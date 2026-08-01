@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portofolio resmi Muhammad Nurrohman. Software & Web Developer spesialis Laravel, Flutter, dan Desain Grafis.">
+<meta name="author" content="Muhammad Nurrohman">
+<title>Muhammad Nurrohman | Software & Web Developer</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="asset/Fav icon.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class', 
+    theme: {
+      extend: {
+        colors: {
+          navy: '#1a1f36',
+          'navy-light': '#2d3348',
+          yellow: '#F5A623',
+          'yellow-dark': '#E09100',
+          'yellow-light': '#FFF8E7',
+          cream: '#FAF7F2',
+          mist: '#F5F6F8',
+          'mist-dark': '#E8EAEF'
+        },
+        fontFamily: {
+          display: ['Sora', 'sans-serif'],
+          body: ['Plus Jakarta Sans', 'sans-serif']
+        },
+        animation: {
+          'fade-in': 'fadeIn 0.6s ease-out',
+          'slide-up': 'slideUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)',
+          'float': 'float 6s ease-in-out infinite',
+          'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+          'marquee': 'marquee 30s linear infinite'
+        },
+        keyframes: {
+          fadeIn: {
+            '0%': { opacity: '0', transform: 'translateY(20px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' }
+          },
+          slideUp: {
+            '0%': { opacity: '0', transform: 'translateY(40px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' }
+          },
+          float: {
+            '0%, 100%': { transform: 'translateY(0px)' },
+            '50%': { transform: 'translateY(-20px)' }
+          },
+          pulseSoft: {
+            '0%, 100%': { opacity: '1' },
+            '50%': { opacity: '0.8' }
+          },
+          marquee: {
+            'from': { transform: 'translateX(0)' },
+            'to': { transform: 'translateX(-50%)' }
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- LOADING SCREEN CSS -->
+<style>
+    #loading-screen {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: #ffffff;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    .loader-logo {
+        width: 80px;
+        height: 80px;
+        background: #F5A623;
+        color: white;
+        font-size: 32px;
+        font-weight: 800;
+        font-family: 'Sora', sans-serif;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
+        animation: pulseSoft 1.5s ease-in-out infinite;
+    }
+    .loader-ring {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #F5A623;
+        position: absolute;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    @keyframes pulseSoft {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(0.95); }
+    }
+</style>
+</head>
+<body>
+
+<!-- LOADING SCREEN ELEMENT -->
+<div id="loading-screen">
+    <div class="relative flex items-center justify-center">
+        <div class="loader-ring"></div>
+        <div class="loader-logo">MN</div>
+    </div>
+    <p class="mt-6 text-sm font-medium text-gray-400 tracking-wider animate-pulse">Memuat Portofolio...</p>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" style="width: 0%"></div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- NAVIGATION BAR -->
+<div id="navbar" class="fixed top-0 left-0 w-full z-50">
+  <div class="mx-auto hidden lg:flex max-w-6xl items-center justify-between rounded-full nav-inner mt-4">
+    <div class="flex items-center gap-4 pl-3">
+      <a href="#home" class="flex items-center gap-3 group">
+        <span class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow to-yellow-dark text-white font-display font-bold flex items-center justify-center text-sm transition-transform group-hover:scale-110 shadow-md">MN</span>
+        <span class="font-display font-extrabold tracking-wide text-navy group-hover:text-yellow transition-colors">NURROHMAN</span>
+      </a>
+      <button id="themeToggle" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition-all">
+        <i class="fas fa-moon text-lg" id="themeIcon"></i>
+      </button>
+    </div>
+    
+    <div class="flex items-center gap-1 text-sm font-medium text-gray-600">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#portfolio" class="nav-link">Portfolio</a>
+      <a href="#achievement" class="nav-link">Achievement</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    
+    <div class="flex items-center gap-3 pr-3">
+      <a href="https://mn-studios.blogspot.com/" target="_blank" rel="noopener" 
+         class="group px-5 py-2.5 rounded-full border-2 border-gray-200 text-navy text-sm font-semibold hover:border-yellow hover:bg-yellow-light transition-all duration-300 flex items-center gap-2.5 shadow-sm hover:shadow-md">
+         <i class="fas fa-pen-nib text-yellow group-hover:scale-110 transition-transform"></i> 
+         <span>Blog</span>
+      </a>
+      
+      <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener"
+         class="group relative px-6 py-2.5 rounded-full bg-navy text-white text-sm font-semibold hover:bg-yellow hover:text-navy transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 overflow-hidden">
+         <i class="fas fa-file-lines group-hover:-translate-x-1 transition-transform duration-300"></i> 
+         <span>Resume</span>
+         <i class="fas fa-arrow-right absolute right-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-navy"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="lg:hidden flex items-center justify-between px-5 py-3 nav-inner">
+    <a href="#home" class="flex items-center gap-2"><span class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow to-yellow-dark text-white font-display font-bold flex items-center justify-center text-xs">MN</span><span class="font-display font-extrabold text-navy text-sm">NURROHMAN</span></a>
+    <button id="menuToggle" aria-label="Menu" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-yellow-light transition-colors"><i class="fas fa-bars text-navy text-lg"></i></button>
+  </div>
+  
+  <div id="mobileMenu" class="hidden lg:hidden bg-white backdrop-blur-md border-b border-gray-200 px-6 py-4 flex flex-col gap-2 text-gray-700 font-medium shadow-lg">
+    <a href="#home" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-house w-4 text-center"></i> Home</a>
+    <a href="#services" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-gear w-4 text-center"></i> Services</a>
+    <a href="#about" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-user w-4 text-center"></i> About</a>
+    <a href="#skills" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-layer-group w-4 text-center"></i> Skills</a>
+    <a href="#portfolio" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-star w-4 text-center"></i> Portfolio</a>
+    <a href="#achievement" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-trophy w-4 text-center"></i> Achievement</a>
+    <a href="#contact" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-envelope w-4 text-center"></i> Contact</a>
+    
+    <a href="https://mn-studios.blogspot.com/" target="_blank" rel="noopener" 
+       class="py-3 px-4 rounded-lg bg-yellow-light text-yellow font-semibold text-center mt-2 hover:bg-yellow hover:text-white transition-all flex items-center justify-center gap-2 border border-yellow/30">
+       <i class="fas fa-pen-nib"></i> Kunjungi Blog
+    </a>
+    
+    <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener" 
+       class="py-3 px-4 rounded-lg bg-navy text-white font-bold text-center hover:bg-yellow hover:text-navy transition-all mt-2 flex items-center justify-center gap-2 shadow-md">
+       <i class="fas fa-file-arrow-down"></i> Download Resume
+    </a>
+  </div>
+</div>
+
+<!-- HERO SECTION -->
+<section id="home" class="relative w-full overflow-hidden pt-32 lg:pt-44 pb-20">
+  <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-yellow/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-20 left-0 w-[400px] h-[400px] bg-yellow/10 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow/5 rounded-full blur-3xl -z-10"></div>
+  
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 items-center">
+      
+      <div class="reveal flex justify-center relative w-full lg:w-auto">
+        <div class="absolute w-80 h-80 sm:w-[420px] sm:h-[420px] rounded-full bg-gradient-to-br from-yellow to-yellow-dark -z-0 animate-pulse-soft"></div>
+        <div class="absolute w-72 h-72 sm:w-[380px] sm:h-[380px] rounded-full border-2 border-yellow/30 -z-0 animate-float"></div>
+        
+        <div class="relative z-10 w-64 sm:w-80 aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl hover-lift border-4 border-white">
+          <img src="asset/Profile.webp" alt="Muhammad Nurrohman" class="w-full h-full object-cover" fetchpriority="high">
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="relative inline-flex items-center gap-2 px-6 py-2.5 mb-6 border-2 border-yellow/40 text-navy font-semibold text-sm rounded-full bg-yellow-light">
+          <span>👋</span><span>Hallo, Semua!</span>
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+          Saya <span class="text-yellow relative inline-block pb-1">
+            Muhammad Nurrohman
+            <svg class="absolute -bottom-0 left-0 w-full h-1.5" viewBox="0 0 100 8" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 4 Q 50 0, 100 4" stroke="#F5A623" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+          </span>,<br>
+          <span class="inline-block pt-2">Software &amp; Web Developer.</span>
+        </h1>
+        
+        <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl mb-8">
+          Mahasiswa Sistem Informasi di Universitas Bina Sarana Informatika (IPK 3.93/4.00) yang membangun aplikasi web dengan Laravel dan aplikasi mobile dengan Flutter. Sebelum serius di dunia coding, sudah lebih dulu 3+ tahun berkecimpung sebagai desainer grafis dan kontributor Adobe Stock &amp; Shutterstock dengan lebih dari 30.000 karya lolos kurasi.
+        </p>
+
+        <div class="flex gap-6 mt-6 text-navy">
+            <div>
+                <span class="block text-2xl font-extrabold text-yellow">3+</span>
+                <span class="text-xs font-medium text-gray-500">Tahun Pengalaman</span>
+            </div>
+            <div class="border-l border-gray-300 pl-6">
+                <span class="block text-2xl font-extrabold text-yellow">30k+</span>
+                <span class="text-xs font-medium text-gray-500">Aset Digital Terkurasi</span>
+            </div>
+            <div class="border-l border-gray-300 pl-6">
+                <span class="block text-2xl font-extrabold text-yellow">7+</span>
+                <span class="text-xs font-medium text-gray-500">Proyek Dirilis</span>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener" class="cv-btn w-full max-w-[280px] h-[48px] block group">
+            <div class="pill-bg w-full"></div>
+            <div class="pill-label w-[190px]"><span class="text-sm">Lihat CV Saya</span></div>
+            <div class="pill-arrow" style="left:200px;"><i class="fas fa-arrow-right text-navy text-sm"></i></div>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-gray-300 hover:border-yellow text-navy font-semibold transition-all hover:bg-yellow-light"><i class="fas fa-comment"></i> Hubungi Saya</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Marquee Section -->
+  <div class="relative w-full mt-20 overflow-hidden">
+    <div class="bg-navy -rotate-[1.4deg] origin-bottom h-14 w-[120%] absolute -left-10 translate-y-1 z-0"></div>
+    <div class="bg-gradient-to-r from-yellow to-yellow-dark py-5 relative z-10 overflow-hidden whitespace-nowrap shadow-lg">
+      <div class="marquee-track">
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-bolt"></i> Laravel Development</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-mobile-screen-button"></i> Flutter Mobile Apps</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-laptop-code"></i> Fullstack Developer</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-palette"></i> UI/UX Design</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-pen-nib"></i> Graphic Design</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-puzzle-piece"></i> Problem Solving</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-bolt"></i> Laravel Development</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-mobile-screen-button"></i> Flutter Mobile Apps</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-laptop-code"></i> Fullstack Developer</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-palette"></i> UI/UX Design</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-pen-nib"></i> Graphic Design</span>
+        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-puzzle-piece"></i> Problem Solving</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="bg-white py-24">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="mb-16 reveal text-center">
+      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-gear text-yellow"></i><span class="font-semibold text-gray-700 uppercase tracking-wider text-sm">Services</span></div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold">
+        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Layanan</span> 
+        <span class="text-navy">yang Saya Tawarkan</span>
+      </h2>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Berbagai layanan pengembangan software dan desain yang dapat membantu mewujudkan ide digital Anda</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-24">
+      <div class="reveal reveal-delay-1 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
+        <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-code text-3xl text-yellow"></i></div>
+        <h3 class="text-xl font-bold mt-14 mb-3">Web Development</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">Membangun aplikasi web dari awal sampai jadi dengan Laravel, MySQL, dan REST API yang aman dan scalable.</p>
+        <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Laravel Framework</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> REST API Development</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> MySQL Database</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
+        <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-mobile-screen-button text-3xl text-yellow"></i></div>
+        <h3 class="text-xl font-bold mt-14 mb-3">Mobile Development</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">Mengembangkan aplikasi Android dengan Flutter, dari UI/UX sampai fitur intinya berjalan optimal.</p>
+        <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Flutter & Dart</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Cross-Platform</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> State Management</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-3 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
+        <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-palette text-3xl text-yellow"></i></div>
+        <h3 class="text-xl font-bold mt-14 mb-3">Graphic Design</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">3+ tahun mengerjakan branding, ilustrasi, dan aset digital untuk klien dan platform stock.</p>
+        <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Adobe Illustrator</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Adobe Photoshop</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Stock Contributor</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-4 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
+        <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-database text-3xl text-yellow"></i></div>
+        <h3 class="text-xl font-bold mt-14 mb-3">Database &amp; BI</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">Pemodelan basis data (ERD, LRS) serta dashboard analitik dengan Power BI.</p>
+        <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> ERD & LRS Design</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Power BI Dashboard</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Data Analysis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION (DENGAN FOTO BARU) -->
+<section id="about" class="bg-gradient-to-br from-mist to-yellow-light/30 py-24 relative overflow-hidden">
+  <div class="absolute top-10 right-10 w-32 h-32 bg-yellow/10 rounded-full blur-2xl"></div>
+  <div class="absolute bottom-10 left-10 w-48 h-48 bg-yellow/5 rounded-full blur-3xl"></div>
+  
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center gap-16">
+    <div class="reveal w-full lg:w-2/5 flex justify-center">
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-yellow to-yellow-dark rounded-[32px] blur-xl opacity-20"></div>
+        
+        <!-- UBAHAN: KOTAK NAVY DIGANTI FOTO -->
+        <div class="w-72 sm:w-80 aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl border-4 border-white relative z-10 bg-white">
+          <img src="asset/Profile2.webp" alt="Muhammad Nurrohman" class="w-full h-full object-cover">
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="reveal w-full lg:w-3/5">
+      <div class="flex items-center gap-2 mb-3"><i class="fas fa-user text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm">About Me</span></div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold mb-6">
+        Siapa itu <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Muhammad Nurrohman</span>?
+      </h2>
+      <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-4">Mahasiswa Sistem Informasi semester 5 di Universitas Bina Sarana Informatika dengan IPK 3.93/4.00. Terbiasa membangun aplikasi dari nol sampai jadi — mulai dari web dengan Laravel sampai mobile dengan Flutter.</p>
+      <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-8">Sebelum serius di dunia coding, lebih dulu 3 tahun berkecimpung sebagai desainer grafis dan kontributor Adobe Stock &amp; Shutterstock, jadi terbiasa kerja rapi dengan tenggat yang ketat.</p>
+
+      <div class="grid grid-cols-3 gap-4 sm:gap-8 text-center mb-8 bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+        <div class="relative"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">30rb+</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600">Karya Stock</p></div>
+        <div class="relative border-x border-gray-200"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">3.93</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600">IPK / 4.00</p></div>
+        <div class="relative"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">3+</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600">Tahun</p></div>
+      </div>
+
+      <div class="flex items-center gap-6 flex-wrap">
+        <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener" class="cv-btn w-full max-w-[300px] h-[48px] block group">
+          <div class="pill-bg w-full"></div>
+          <div class="pill-label w-[210px]"><span class="text-sm">Download CV Saya</span></div>
+          <div class="pill-arrow" style="left:220px;"><i class="fas fa-arrow-down text-navy text-sm"></i></div>
+        </a>
+        <div class="flex gap-3">
+          <a href="https://linkedin.com/in/muhammadnurrohman" target="_blank" class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-600 hover:bg-yellow hover:text-white hover:border-yellow transition-all"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/nurrohman-dev" target="_blank" class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-600 hover:bg-yellow hover:text-white hover:border-yellow transition-all"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="reveal mb-16 text-center">
+      <div class="flex items-center justify-center gap-2 mb-3">
+        <i class="fas fa-layer-group text-yellow"></i>
+        <span class="font-semibold text-navy uppercase tracking-wider text-sm">Keahlian Teknis</span>
+      </div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold">
+        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Skills</span> 
+        <span class="text-navy">&amp; Tools</span>
+      </h2>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">
+        Teknologi, framework, dan tools yang saya kuasai untuk membangun solusi digital
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Kategori 1 -->
+      <div class="reveal reveal-delay-1 skill-card p-6 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
+          <i class="fas fa-code text-yellow"></i>
+          <h3 class="font-bold text-lg">Bahasa Pemrograman</h3>
+        </div>
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-php text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">PHP</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-dice-d6 text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Dart</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-js text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">JavaScript</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-table-cells text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">SQL</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-html5 text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">HTML/CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kategori 2 -->
+      <div class="reveal reveal-delay-2 skill-card p-6 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
+          <i class="fas fa-cubes text-yellow"></i>
+          <h3 class="font-bold text-lg">Framework &amp; Library</h3>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-laravel text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Laravel</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-mobile-screen-button text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Flutter</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-bootstrap text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Bootstrap</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-wind text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Tailwind</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kategori 3 -->
+      <div class="reveal reveal-delay-3 skill-card p-6 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
+          <i class="fas fa-database text-yellow"></i>
+          <h3 class="font-bold text-lg">Basis Data</h3>
+        </div>
+        <div class="flex justify-center items-center text-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-server text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">MySQL/MariaDB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kategori 4 -->
+      <div class="reveal reveal-delay-1 skill-card p-6 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
+          <i class="fas fa-tools text-yellow"></i>
+          <h3 class="font-bold text-lg">Tools &amp; Platform</h3>
+        </div>
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-code text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">VS Code</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-server text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Laragon</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-android text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Android Studio</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-sitemap text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Enterprise Architect</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-github text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Git/GitHub</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-paper-plane text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Postman</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kategori 5 -->
+      <div class="reveal reveal-delay-2 skill-card p-6 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
+          <i class="fas fa-project-diagram text-yellow"></i>
+          <h3 class="font-bold text-lg">Pemodelan &amp; Metodologi</h3>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-diagram-project text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">UML<br><span class="text-[9px]">(Use Case, Activity, Class, Sequence)</span></span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-table-cells-large text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">ERD</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-layer-group text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">LRS</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-lock text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">RBAC</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-arrows-spin text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">SDLC</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-people-group text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Scrum</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-arrow-down-long text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Waterfall</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kategori 6 -->
+      <div class="reveal reveal-delay-3 skill-card p-6 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
+          <i class="fas fa-paint-brush text-yellow"></i>
+          <h3 class="font-bold text-lg">Data, BI &amp; Multimedia</h3>
+        </div>
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-chart-simple text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Power BI</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-python text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Google Colab</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-pen-nib text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Illustrator</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-pen-ruler text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Photoshop</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-video text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Capcut</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-cube text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Blender</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-brands fa-figma text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Figma</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-yellow-light flex items-center justify-center text-yellow"><i class="fa-solid fa-paint-roller text-2xl"></i></div>
+            <span class="text-xs font-medium text-gray-700">Canva</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="bg-gradient-to-br from-mist to-yellow-light/30 py-24 relative overflow-hidden">
+  <div class="absolute top-20 left-10 w-40 h-40 bg-yellow/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 right-10 w-60 h-60 bg-yellow/10 rounded-full blur-3xl"></div>
+  
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+    <div class="reveal mb-12 text-center">
+      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-star text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm">Portfolio</span></div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold">
+        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Proyek</span> 
+        <span class="text-navy">Terbaru Saya</span>
+      </h2>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Beberapa proyek yang telah saya kerjakan dan banggakan</p>
+    </div>
+
+    <div class="reveal mb-10 flex justify-end">
+      <a href="projects.html" class="btn-view-all group">
+        <span>Lihat Semua Proyek</span>
+        <span class="circle-arrow"><i class="fas fa-arrow-right text-sm"></i></span>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <div class="reveal reveal-delay-1 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
+        <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+          <img src="asset/Web_Bogarasa.jpg" alt="Bogarasa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Laravel · MySQL · Midtrans</span>
+          <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Bogarasa</h3>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">E-commerce bakery dengan katalog, keranjang, checkout, dan integrasi payment Midtrans yang akurat 100%.</p>
+        <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+          <span>#E-Commerce</span>
+          <span>#Payment Gateway</span>
+          <span>#Fullstack</span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
+        <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+          <img src="asset/Santri TPQ Pro.png" alt="Santri TPQ Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Dart · OOP</span>
+          <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Santri TPQ Pro</h3>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi Android kelompok untuk data santri, presensi, e-commerce sepatu, dan info rute angkutan kota.</p>
+        <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+          <span>#Mobile App</span>
+          <span>#Flutter</span>
+          <span>#Team Project</span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
+        <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+          <img src="asset/Motor Oil Tracker.png" alt="Motor Oil Tracker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Solo Project</span>
+          <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Motor Oil Tracker &amp; Buildwise</h3>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi pencatat jadwal ganti oli motor, dan manajemen proyek konstruksi berbantuan AI.</p>
+        <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+          <span>#Personal Project</span>
+          <span>#AI Integration</span>
+          <span>#Mobile</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENT -->
+<section id="achievement" class="bg-white py-24">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="reveal mb-16 text-center">
+      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-trophy text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm">Achievement</span></div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold">
+        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Pencapaian</span> 
+        <span class="text-navy">yang Saya Peroleh</span>
+      </h2>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Perjalanan dan pencapaian yang telah saya raih selama berkarya</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-x-8 gap-y-6">
+      <!-- Kolom Kiri -->
+      <div class="flex flex-col gap-4">
+        
+        <!-- ITEM 1: BNSP -->
+        <a href="https://drive.google.com/your-link-sertifikat-bnsp-here" target="_blank" rel="noopener" class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60 hover:border-yellow hover:bg-yellow-light group relative">
+          <div class="relative flex-shrink-0">
+            <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform"><i class="fas fa-certificate text-yellow"></i></div>
+            <i class="fas fa-circle-check text-blue-500 absolute -bottom-1 -right-1 text-sm bg-white rounded-full group-hover:animate-pulse transition-all"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base group-hover:text-yellow transition-colors">Sertifikasi BNSP — Database Administrator</h4>
+            <p class="text-xs text-gray-500 mt-1">Melalui LSP BSI, 2024</p>
+          </div>
+        </a>
+
+        <!-- ITEM 2: TuK Indonesia -->
+        <a href="https://drive.google.com/your-link-portofolio-tuk-here" target="_blank" rel="noopener" class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60 hover:border-yellow hover:bg-yellow-light group relative">
+          <div class="relative flex-shrink-0">
+            <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform"><i class="fas fa-briefcase text-yellow"></i></div>
+            <i class="fas fa-circle-check text-blue-500 absolute -bottom-1 -right-1 text-sm bg-white rounded-full group-hover:animate-pulse transition-all"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base group-hover:text-yellow transition-colors">Junior Graphic Designer — TuK Indonesia</h4>
+            <p class="text-xs text-gray-500 mt-1">Jakarta Selatan, Apr–Jul 2022</p>
+          </div>
+        </a>
+
+        <!-- ITEM 3: Trainer Power BI -->
+        <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
+          <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-chalkboard-user text-yellow"></i></div>
+          <div>
+            <h4 class="font-semibold text-base">Trainer Power BI — SMK Pembangunan</h4>
+            <p class="text-xs text-gray-500 mt-1">Melatih 34 siswa bersama tim 10 orang</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kolom Kanan -->
+      <div class="flex flex-col gap-4">
+        
+        <!-- ITEM 4: KPPS -->
+        <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
+          <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-people-group text-yellow"></i></div>
+          <div>
+            <h4 class="font-semibold text-base">Anggota KPPS KPU RI</h4>
+            <p class="text-xs text-gray-500 mt-1">Input &amp; rekapitulasi suara Pemilu 2024 lewat Sirekap</p>
+          </div>
+        </div>
+
+        <!-- ITEM 5: Pendiri MN Studio's -->
+        <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
+          <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-lightbulb text-yellow"></i></div>
+          <div>
+            <h4 class="font-semibold text-base">Pendiri MN Studio's</h4>
+            <p class="text-xs text-gray-500 mt-1">Studio kreatif independen bidang desain & produksi visual</p>
+          </div>
+        </div>
+
+        <!-- ITEM 6: Kontributor Stock -->
+        <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
+          <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-pen-nib text-yellow"></i></div>
+          <div>
+            <h4 class="font-semibold text-base">Kontributor Adobe Stock &amp; Shutterstock</h4>
+            <p class="text-xs text-gray-500 mt-1">30.000+ aset vektor & animasi lolos kurasi sejak 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-gradient-to-br from-mist to-yellow-light/30 py-24 relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-64 h-64 bg-yellow/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-80 h-80 bg-yellow/10 rounded-full blur-3xl"></div>
+  
+  <div class="max-w-3xl mx-auto text-center px-6 relative z-10">
+    <h2 class="reveal text-4xl sm:text-5xl font-extrabold mb-6">Punya proyek, ide, atau peluang magang?</h2>
+    <p class="reveal text-lg text-gray-600 mb-10">Saya terbuka untuk <span class="text-yellow font-semibold">berdiskusi dan bekerja sama.</span> Jangan ragu untuk menghubungi!</p>
+
+    <form class="reveal reveal-delay-1 contact-form flex flex-col gap-4 border-2 border-gray-200 rounded-2xl px-6 py-6 shadow-lg bg-white transition-all" 
+          action="https://formspree.io/f/mojgovjg" 
+          method="POST">
+      
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="flex-1 flex items-center gap-3 border-b border-gray-200 pb-2">
+          <i class="fas fa-user text-yellow"></i>
+          <input type="text" name="name" placeholder="Nama Lengkap *" required class="w-full outline-none bg-transparent text-sm">
+        </div>
+        <div class="flex-1 flex items-center gap-3 border-b border-gray-200 pb-2">
+          <i class="fas fa-envelope text-yellow"></i>
+          <input type="email" name="email" placeholder="Email *" required class="w-full outline-none bg-transparent text-sm">
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
+        <i class="fas fa-heading text-yellow"></i>
+        <input type="text" name="subject" placeholder="Subjek" class="w-full outline-none bg-transparent text-sm">
+      </div>
+
+      <div class="flex items-start gap-3 border-b border-gray-200 pb-2">
+        <i class="fas fa-comment-dots text-yellow mt-2"></i>
+        <textarea name="message" placeholder="Pesan *" required class="w-full outline-none bg-transparent text-sm resize-none min-h-[100px] py-2"></textarea>
+      </div>
+      
+      <button type="submit" class="w-full sm:w-auto self-end bg-gradient-to-r from-yellow to-yellow-dark text-navy font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all hover:scale-105">Kirim Pesan</button>
+    </form>
+
+    <div class="reveal reveal-delay-2 flex justify-center flex-wrap gap-6 mt-12">
+      <a href="mailto:nurrohman.mhmd@gmail.com" class="sosmed-icon-wrapper">
+        <i class="fas fa-envelope text-lg"></i>
+        <span class="tooltip-text">Email</span>
+      </a>
+      <a href="https://linkedin.com/in/muhammadnurrohman" target="_blank" class="sosmed-icon-wrapper">
+        <i class="fa-brands fa-linkedin-in text-lg"></i>
+        <span class="tooltip-text">LinkedIn</span>
+      </a>
+      <a href="https://github.com/nurrohman-dev" target="_blank" class="sosmed-icon-wrapper">
+        <i class="fa-brands fa-github text-lg"></i>
+        <span class="tooltip-text">GitHub</span>
+      </a>
+      <a href="https://mnurrohman.carrd.co" target="_blank" class="sosmed-icon-wrapper">
+        <i class="fas fa-globe text-lg"></i>
+        <span class="tooltip-text">Website</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gradient-to-r from-navy to-navy-light text-white/70 py-10">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm">© 2026 Muhammad Nurrohman. All rights reserved.</p>
+      <div class="flex gap-6 text-sm">
+        <a href="#home" class="hover:text-yellow transition-colors">Home</a>
+        <a href="#services" class="hover:text-yellow transition-colors">Services</a>
+        <a href="#portfolio" class="hover:text-yellow transition-colors">Portfolio</a>
+        <a href="#contact" class="hover:text-yellow transition-colors">Contact</a>
+      </div>
+      <div class="flex gap-4">
+        <a href="javascript:void(0)" 
+           onclick="navigator.clipboard.writeText('nurrohman.mhmd@gmail.com'); alert('✅ Email berhasil disalin!');" 
+           class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow hover:text-navy transition-all text-sm cursor-pointer" 
+           title="Salin Email">
+           <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://linkedin.com/in/muhammadnurrohman" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow hover:text-navy transition-all text-sm"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/nurrohman-dev" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow hover:text-navy transition-all text-sm"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
+    <div class="border-t border-white/10 mt-6 pt-6 text-center"></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- JAVASCRIPT UNTUK MENGHILANGKAN LOADING SCREEN -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if(loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 600);
+            }
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>
