@@ -3,22 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Nurrohman | Portfolio & Projects - Laravel & Flutter Developer</title>
-<meta name="description" content="Portfolio Muhammad Nurrohman. Lihat project Laravel, Flutter, dan desain UI/UX terbaik saya. Tersedia untuk kolaborasi dan pekerjaan lepas.">
+<title>Muhammad Nurrohman | Portfolio & Projects</title>
+<meta name="description" content="Portfolio Muhammad Nurrohman. Lihat project Laravel, Flutter, dan desain UI/UX terbaik saya.">
 <meta name="keywords" content="Laravel Developer, Flutter Developer, Portfolio, Muhammad Nurrohman, Web Developer Indonesia">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- FIX #1: FsLightbox sekarang di-host LOKAL (bukan dari CDN jsdelivr) -->
-<!-- Ini mencegah masalah "Unsafe attempt to load URL" saat dibuka via file:// -->
-<!-- dan memastikan library selalu ter-load walau tanpa koneksi internet -->
 <script src="asset/js/fslightbox.js"></script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
+    darkMode: 'class',
     theme: {
       extend: {
         colors: {
@@ -36,13 +33,28 @@
 </script>
 <style>
   body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8f9fc; color: #1a1f36; }
+  
+  /* DARK MODE STYLES - RESPONSIVE */
+  .dark body { background: #111827; color: #f3f4f6; }
+  .dark .bg-white { background: #1f2937; }
+  .dark .border-gray-100 { border-color: #374151; }
+  .dark .text-navy { color: #f3f4f6; }
+  .dark .text-gray-600 { color: #9ca3af; }
+  .dark .text-gray-400 { color: #6b7280; }
+  .dark .bg-gray-100 { background: #374151; }
+  .dark .bg-[#f8f9fc] { background: #111827; }
+  .dark .border-gray-200 { border-color: #374151; }
+  .dark .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5); }
+  .dark .modal-box { background: #1f2937; }
+  .dark .search-input { background: #1f2937; color: #f3f4f6; border-color: #374151; }
+  
   ::selection { background: #F5A623; color: #ffffff; }
   
+  /* FILTER BUTTON */
   .filter-btn {
     transition: all 0.3s ease;
-    /* Menyamakan tinggi dan padding untuk konsistensi */
-    height: 48px;
-    padding: 0 1.5rem;
+    height: 44px; /* Sedikit lebih kecil untuk mobile */
+    padding: 0 1.25rem;
     border-radius: 9999px;
     border: 1px solid #e5e7eb;
     background: white;
@@ -51,23 +63,28 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.875rem;
   }
+  .dark .filter-btn { background: #1f2937; border-color: #374151; color: #9ca3af; }
   .filter-btn:hover { background: #f3f4f6; }
+  .dark .filter-btn:hover { background: #374151; }
   .filter-btn.active { background: #F5A623; color: white; border-color: #F5A623; }
+  .dark .filter-btn.active { background: #F5A623; color: white; border-color: #F5A623; }
   
+  /* PROJECT CARD */
   .project-card { 
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer; 
+    border-radius: 1.25rem;
   }
   .project-card:hover { 
-    transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); 
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15); 
   }
   
   .project-item { 
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 1;
     transform: scale(1);
   }
@@ -81,12 +98,12 @@
   
   .search-input:focus { outline: none; border-color: #F5A623; box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.2); }
 
-  /* Modal Info Styles */
+  /* MODAL INFO STYLES - MOBILE FRIENDLY */
   .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -94,6 +111,7 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    padding: 1rem;
   }
   .modal-overlay.active {
     opacity: 1;
@@ -101,25 +119,25 @@
   }
   .modal-box {
     background: #fff;
-    max-width: 600px;
-    width: 90%;
+    max-width: 550px;
+    width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    border-radius: 24px;
-    padding: 2rem;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
     position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-    transform: scale(0.9);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+    transform: scale(0.95);
     transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
   .modal-overlay.active .modal-box {
     transform: scale(1);
   }
-  .modal-box::-webkit-scrollbar { width: 6px; }
+  .modal-box::-webkit-scrollbar { width: 4px; }
   .modal-box::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
   .modal-box::-webkit-scrollbar-thumb { background: #F5A623; border-radius: 10px; }
 
-  /* LOADING SCREEN STYLES */
+  /* LOADING SCREEN */
   #loading-screen {
       position: fixed;
       top: 0; left: 0;
@@ -132,6 +150,7 @@
       justify-content: center;
       transition: opacity 0.6s ease, visibility 0.6s ease;
   }
+  .dark #loading-screen { background: #111827; }
   #loading-screen.hidden {
       opacity: 0;
       visibility: hidden;
@@ -166,14 +185,11 @@
     100% { transform: rotate(360deg); }
   }
   @keyframes pulseSoft {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(0.95); }
   }
 
-  /* FIX #2: Override reset Tailwind Preflight yang bikin tombol/icon FsLightbox
-     jadi tak terlihat (button & svg di-reset stylenya oleh Tailwind CDN).
-     Ini memastikan seluruh toolbar bawaan FsLightbox (termasuk tombol close)
-     selalu tampil normal, terlepas dari custom close button tambahan kita. */
+  /* FSLIGHTBOX FIX */
   .fslightbox-container button,
   .fslightbox-container svg,
   .fslightbox-toolbar-button {
@@ -185,7 +201,7 @@
 </head>
 <body>
 
-<!-- LOADING SCREEN ELEMENT -->
+<!-- LOADING SCREEN -->
 <div id="loading-screen">
     <div class="relative flex items-center justify-center">
         <div class="loader-ring"></div>
@@ -194,14 +210,13 @@
     <p class="mt-6 text-sm font-medium text-gray-400 tracking-wider animate-pulse">Memuat Proyek...</p>
 </div>
 
-<!-- Back Button & Header -->
-<div class="max-w-6xl mx-auto px-6 lg:px-8 pt-10 pb-12">
-    <a href="index.html" class="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-semibold text-sm mb-8 transition-colors">
-        <i class="fas fa-arrow-left"></i> Kembali
-    </a>
-    
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8">
+<!-- HEADER -->
+<div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 pt-10 pb-12">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
+            <a href="index.html" class="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-semibold text-sm mb-6 transition-colors">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
             <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">Portfolio</p>
             <h1 class="text-4xl sm:text-5xl font-extrabold">
                 <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">My</span> 
@@ -209,15 +224,20 @@
             </h1>
             <p class="mt-3 text-gray-500 max-w-xl text-sm">Kumpulan website, aplikasi mobile, dan inovasi digital yang saya rancang.</p>
         </div>
+        
+        <!-- DARK MODE TOGGLE -->
+        <button id="themeToggleProjects" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+            <i class="fas fa-moon text-navy dark:text-white text-lg" id="themeIconProjects"></i>
+        </button>
     </div>
 
-    <!-- SEARCH & FILTER (STICKY HEADER) - DIPERBAIKI AGAR TIDAK IKUT TURUN -->
-    <div class="sticky top-[68px] z-40 bg-[#f8f9fc] py-4 flex flex-col lg:flex-row items-center gap-4 mb-8 w-full shadow-[0_4px_6px_-4px_rgba(0,0,0,0.03)]">
-        <div class="relative flex-1 w-full lg:max-w-md">
+    <!-- SEARCH & FILTER - RAPI DI MOBILE -->
+    <div class="sticky top-20 z-40 bg-[#f8f9fc] dark:bg-[#111827] py-4 flex flex-col md:flex-row items-center gap-3 mb-8 w-full shadow-[0_4px_6px_-4px_rgba(0,0,0,0.03)]">
+        <div class="relative w-full md:max-w-sm">
             <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-            <input type="text" id="searchInput" placeholder="Search project..." class="search-input w-full pl-12 pr-4 h-12 rounded-full border border-gray-200 bg-white shadow-sm focus:border-yellow transition-all text-sm">
+            <input type="text" id="searchInput" placeholder="Search project..." class="search-input w-full pl-12 pr-4 h-11 rounded-full border border-gray-200 bg-white shadow-sm focus:border-yellow transition-all text-sm">
         </div>
-        <div class="flex flex-wrap gap-2 w-full lg:w-auto justify-start lg:justify-end">
+        <div class="flex flex-wrap gap-2 w-full md:w-auto justify-start md:justify-end">
             <button class="filter-btn active" onclick="filterProjects('all')">Semua</button>
             <button class="filter-btn" onclick="filterProjects('website')">Website</button>
             <button class="filter-btn" onclick="filterProjects('mobile')">Mobile App</button>
@@ -225,144 +245,141 @@
         </div>
     </div>
 
-    <!-- PROJECTS GRID -->
-    <div id="projectGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative min-h-[400px]">
+    <!-- PROJECTS GRID - RESPONSIF: 1 -> 2 -> 3 Kolom -->
+    <div id="projectGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative min-h-[400px]">
         
-        <!-- Project Card: BOGARASA -->
-        <div class="project-item bg-white p-6 rounded-2xl shadow-sm border border-gray-100 project-card h-full flex flex-col" 
-             data-category="website uiux" 
-             onclick="openModal('bogarasa')">
-            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100 group">
+        <!-- BOGARASA -->
+        <div class="project-item bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border border-gray-100 project-card flex flex-col" 
+             data-category="website uiux" onclick="openModal('bogarasa')">
+            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
                 <a href="asset/Web_Bogarasa.jpg" data-fslightbox="project-gallery" data-title="Bogarasa" class="block w-full h-full" onclick="event.stopPropagation()">
-                    <img src="asset/Web_Bogarasa.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Bogarasa" draggable="false">
+                    <img src="asset/Web_Bogarasa.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Bogarasa" loading="lazy">
                 </a>
                 <span class="absolute top-3 right-3 bg-yellow text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none">2024</span>
             </div>
-            <div class="flex flex-wrap gap-2 mb-3">
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Laravel</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">MySQL</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Midtrans</span>
+            <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Laravel</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">MySQL</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Midtrans</span>
             </div>
-            <h3 class="text-xl font-bold text-navy mb-2">Bogarasa</h3>
-            <p class="text-xs text-gray-400 mb-2 font-medium">E-commerce Bakery/Makanan · Proyek Kelompok</p>
-            <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">Proyek Kelompok pada mata kuliah Perancangan & Pemodelan SI, Web Programming, Software Quality Assurance, dan Manajemen Proyek SI.</p>
+            <h3 class="text-xl font-bold text-navy mb-1 group-hover:text-yellow transition-colors">Bogarasa</h3>
+            <p class="text-xs text-gray-400 mb-2 font-medium">E-commerce Bakery/Makanan</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">Proyek Kelompok dengan modul katalog, keranjang, checkout, dan integrasi payment Midtrans.</p>
             <div class="flex-1"></div>
-            <div class="mt-auto flex flex-wrap gap-3 items-center text-xs text-gray-400 pt-3 border-t border-gray-100">
+            <div class="mt-auto flex flex-wrap gap-3 items-center text-[10px] text-gray-400 pt-3 border-t border-gray-100">
                 <span class="flex items-center gap-1"><i class="fa-brands fa-laravel"></i> Laravel</span>
                 <span class="flex items-center gap-1"><i class="fa-solid fa-database"></i> MySQL</span>
                 <span class="flex items-center gap-1"><i class="fa-solid fa-code"></i> Midtrans</span>
             </div>
         </div>
 
-        <!-- Project Card: SANTRI TPQ PRO -->
-        <div class="project-item bg-white p-6 rounded-2xl shadow-sm border border-gray-100 project-card h-full flex flex-col" 
-             data-category="mobile uiux" 
-             onclick="openModal('santri')">
-            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100 group">
+        <!-- SANTRI TPQ PRO -->
+        <div class="project-item bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border border-gray-100 project-card flex flex-col" 
+             data-category="mobile uiux" onclick="openModal('santri')">
+            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
                 <a href="asset/Santri TPQ Pro.png" data-fslightbox="project-gallery" data-title="Santri TPQ Pro" class="block w-full h-full" onclick="event.stopPropagation()">
-                    <img src="asset/Santri TPQ Pro.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Santri TPQ Pro" draggable="false">
+                    <img src="asset/Santri TPQ Pro.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Santri TPQ Pro" loading="lazy">
                 </a>
                 <span class="absolute top-3 right-3 bg-yellow text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none">2024 - 2025</span>
             </div>
-            <div class="flex flex-wrap gap-2 mb-3">
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Flutter</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Dart</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">OOP</span>
+            <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Flutter</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Dart</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">OOP</span>
             </div>
-            <h3 class="text-xl font-bold text-navy mb-2">Santri TPQ Pro</h3>
-            <p class="text-xs text-gray-400 mb-2 font-medium">Aplikasi Mobile · Mata Kuliah Pemrograman Mobile</p>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">Aplikasi Android berbasis OOP di Dart untuk mengelola data santri, penilaian, dan presensi.</p>
+            <h3 class="text-xl font-bold text-navy mb-1 group-hover:text-yellow transition-colors">Santri TPQ Pro</h3>
+            <p class="text-xs text-gray-400 mb-2 font-medium">Aplikasi Mobile</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">Aplikasi Android untuk mengelola data santri, presensi, penilaian, dan hafalan.</p>
             <div class="flex-1"></div>
-            <div class="mt-auto flex flex-wrap gap-3 items-center text-xs text-gray-400 pt-3 border-t border-gray-100">
+            <div class="mt-auto flex flex-wrap gap-3 items-center text-[10px] text-gray-400 pt-3 border-t border-gray-100">
                 <span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span>
             </div>
         </div>
 
-        <!-- Project Card: SHOEZY -->
-        <div class="project-item bg-white p-6 rounded-2xl shadow-sm border border-gray-100 project-card h-full flex flex-col" 
-             data-category="mobile uiux" 
-             onclick="openModal('shoezy')">
-            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100 group">
+        <!-- SHOEZY -->
+        <div class="project-item bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border border-gray-100 project-card flex flex-col" 
+             data-category="mobile uiux" onclick="openModal('shoezy')">
+            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
                 <a href="asset/Shoezy.png" data-fslightbox="project-gallery" data-title="Shoezy" class="block w-full h-full" onclick="event.stopPropagation()">
-                    <img src="asset/Shoezy.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Shoezy" draggable="false">
+                    <img src="asset/Shoezy.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Shoezy" loading="lazy">
                 </a>
                 <span class="absolute top-3 right-3 bg-yellow text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none">2024 - 2025</span>
             </div>
-            <div class="flex flex-wrap gap-2 mb-3">
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Flutter</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Dart</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">OOP</span>
+            <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Flutter</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Dart</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">OOP</span>
             </div>
-            <h3 class="text-xl font-bold text-navy mb-2">Shoezy</h3>
-            <p class="text-xs text-gray-400 mb-2 font-medium">Aplikasi Mobile · Mata Kuliah Pemrograman Mobile</p>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.</p>
+            <h3 class="text-xl font-bold text-navy mb-1 group-hover:text-yellow transition-colors">Shoezy</h3>
+            <p class="text-xs text-gray-400 mb-2 font-medium">Aplikasi Mobile</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.</p>
             <div class="flex-1"></div>
-            <div class="mt-auto flex flex-wrap gap-3 items-center text-xs text-gray-400 pt-3 border-t border-gray-100">
+            <div class="mt-auto flex flex-wrap gap-3 items-center text-[10px] text-gray-400 pt-3 border-t border-gray-100">
                 <span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span>
             </div>
         </div>
 
-        <!-- Project: ANGKOTIN -->
-        <div class="project-item bg-white p-6 rounded-2xl shadow-sm border border-gray-100 project-card h-full flex flex-col" data-category="mobile uiux" onclick="openModal('angkotin')">
-            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100 group">
-                <a href="asset/Angkotin.png" data-fslightbox="project-gallery" data-title="Angkotin Bogor" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/Angkotin.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Angkotin Bogor" draggable="false"></a>
+        <!-- ANGKOTIN -->
+        <div class="project-item bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border border-gray-100 project-card flex flex-col" data-category="mobile uiux" onclick="openModal('angkotin')">
+            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+                <a href="asset/Angkotin.png" data-fslightbox="project-gallery" data-title="Angkotin Bogor" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/Angkotin.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Angkotin Bogor" loading="lazy"></a>
                 <span class="absolute top-3 right-3 bg-yellow text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none">2024 - 2025</span>
             </div>
-            <div class="flex flex-wrap gap-2 mb-3">
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Flutter</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Dart</span>
-                <span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">OOP</span>
+            <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Flutter</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Dart</span>
+                <span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">OOP</span>
             </div>
-            <h3 class="text-xl font-bold text-navy mb-2">Angkotin Bogor</h3>
-            <p class="text-xs text-gray-400 mb-2 font-medium">Aplikasi Mobile · Mata Kuliah Pemrograman Mobile</p>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">Aplikasi Android berbasis OOP di Dart yang menyediakan info rute angkutan kota di Bogor.</p>
+            <h3 class="text-xl font-bold text-navy mb-1 group-hover:text-yellow transition-colors">Angkotin Bogor</h3>
+            <p class="text-xs text-gray-400 mb-2 font-medium">Aplikasi Mobile</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">Aplikasi Android yang menyediakan info rute angkutan kota di Bogor berbasis OOP.</p>
             <div class="flex-1"></div>
-            <div class="mt-auto flex flex-wrap gap-3 items-center text-xs text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span></div>
+            <div class="mt-auto flex flex-wrap gap-3 items-center text-[10px] text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span></div>
         </div>
 
-        <!-- Project: MOTOR OIL -->
-        <div class="project-item bg-white p-6 rounded-2xl shadow-sm border border-gray-100 project-card h-full flex flex-col" data-category="mobile uiux" onclick="openModal('motor')">
-            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100 group">
-                <a href="asset/Motor Oil Tracker.png" data-fslightbox="project-gallery" data-title="Motor Oil Tracker" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/Motor Oil Tracker.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Motor Oil Tracker" draggable="false"></a>
+        <!-- MOTOR OIL -->
+        <div class="project-item bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border border-gray-100 project-card flex flex-col" data-category="mobile uiux" onclick="openModal('motor')">
+            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+                <a href="asset/Motor Oil Tracker.png" data-fslightbox="project-gallery" data-title="Motor Oil Tracker" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/Motor Oil Tracker.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Motor Oil Tracker" loading="lazy"></a>
                 <span class="absolute top-3 right-3 bg-yellow text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none">2025 - 2026</span>
             </div>
-            <div class="flex flex-wrap gap-2 mb-3"><span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Flutter</span><span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">AI</span></div>
-            <h3 class="text-xl font-bold text-navy mb-2">Motor Oil Tracker</h3>
+            <div class="flex flex-wrap gap-2 mb-2"><span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Flutter</span><span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">AI</span></div>
+            <h3 class="text-xl font-bold text-navy mb-1 group-hover:text-yellow transition-colors">Motor Oil Tracker</h3>
             <p class="text-xs text-gray-400 mb-2 font-medium">Proyek Individu</p>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">Aplikasi mobile untuk mencatat jadwal dan riwayat ganti oli secara mandiri.</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">Aplikasi mobile untuk mencatat jadwal dan riwayat ganti oli secara mandiri.</p>
             <div class="flex-1"></div>
-            <div class="mt-auto flex flex-wrap gap-3 items-center text-xs text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span></div>
+            <div class="mt-auto flex flex-wrap gap-3 items-center text-[10px] text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span></div>
         </div>
 
-        <!-- Project: BUILDWISE -->
-        <div class="project-item bg-white p-6 rounded-2xl shadow-sm border border-gray-100 project-card h-full flex flex-col" data-category="mobile uiux" onclick="openModal('buildwise')">
-            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100 group">
-                <a href="asset/BuildWise.png" data-fslightbox="project-gallery" data-title="BuildWise" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/BuildWise.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Buildwise" draggable="false"></a>
+        <!-- BUILDWISE -->
+        <div class="project-item bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border border-gray-100 project-card flex flex-col" data-category="mobile uiux" onclick="openModal('buildwise')">
+            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+                <a href="asset/BuildWise.png" data-fslightbox="project-gallery" data-title="BuildWise" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/BuildWise.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Buildwise" loading="lazy"></a>
                 <span class="absolute top-3 right-3 bg-yellow text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none">2025 - 2026</span>
             </div>
-            <div class="flex flex-wrap gap-2 mb-3"><span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Flutter</span><span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">AI</span></div>
-            <h3 class="text-xl font-bold text-navy mb-2">BuildWise</h3>
+            <div class="flex flex-wrap gap-2 mb-2"><span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Flutter</span><span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">AI</span></div>
+            <h3 class="text-xl font-bold text-navy mb-1 group-hover:text-yellow transition-colors">BuildWise</h3>
             <p class="text-xs text-gray-400 mb-2 font-medium">Proyek Individu</p>
-            <p class="text-sm text-gray-600 leading-relaxed mb-4">Aplikasi mobile berbantuan AI untuk manajemen proyek konstruksi.</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">Aplikasi mobile berbantuan AI untuk manajemen proyek konstruksi dan anggaran.</p>
             <div class="flex-1"></div>
-            <div class="mt-auto flex flex-wrap gap-3 items-center text-xs text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span></div>
+            <div class="mt-auto flex flex-wrap gap-3 items-center text-[10px] text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-brands fa-flutter"></i> Flutter</span></div>
         </div>
 
-        <!-- Project: ARCHIBUILD -->
-        <div class="project-item bg-white p-6 rounded-2xl shadow-sm border border-gray-100 project-card h-full flex flex-col" data-category="mobile uiux" onclick="openModal('archibuild')">
-            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100 group">
-                <a href="asset/ArchiBuild.png" data-fslightbox="project-gallery" data-title="Archibuild Apps" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/ArchiBuild.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Archibuild AR" draggable="false"></a>
+        <!-- ARCHIBUILD -->
+        <div class="project-item bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border border-gray-100 project-card flex flex-col" data-category="mobile uiux" onclick="openModal('archibuild')">
+            <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+                <a href="asset/ArchiBuild.png" data-fslightbox="project-gallery" data-title="Archibuild Apps" class="block w-full h-full" onclick="event.stopPropagation()"><img src="asset/ArchiBuild.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Archibuild AR" loading="lazy"></a>
                 <span class="absolute top-3 right-3 bg-yellow text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none">Des 2022 - Mar 2023</span>
             </div>
-            <div class="flex flex-wrap gap-2 mb-3"><span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">Unity 3D</span><span class="text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full">AR</span></div>
-            <h3 class="text-xl font-bold text-navy mb-2">Archibuild Apps</h3>
-            <p class="text-xs text-gray-400 mb-2 font-medium">Pengenalan Objek Arsitektur Berbasis AR</p>
-            <ul class="text-sm text-gray-600 list-disc pl-4 space-y-1.5 leading-relaxed mb-4">
-                <li>Merancang prototipe aplikasi, UI/UX, dan aset digitalnya.</li>
-                <li>Mengembangkan fitur augmented reality menggunakan Unity 3D.</li>
+            <div class="flex flex-wrap gap-2 mb-2"><span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">Unity 3D</span><span class="text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20">AR</span></div>
+            <h3 class="text-xl font-bold text-navy mb-1 group-hover:text-yellow transition-colors">Archibuild Apps</h3>
+            <p class="text-xs text-gray-400 mb-2 font-medium">Pengenalan Objek Arsitektur</p>
+            <ul class="text-sm text-gray-600 list-disc pl-4 space-y-1 leading-relaxed mb-3 line-clamp-2">
+                <li>Merancang prototipe aplikasi, UI/UX, dan aset digital.</li>
+                <li>Mengembangkan fitur AR menggunakan Unity 3D.</li>
             </ul>
             <div class="flex-1"></div>
-            <div class="mt-auto flex flex-wrap gap-3 items-center text-xs text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-solid fa-cube"></i> Unity 3D</span></div>
+            <div class="mt-auto flex flex-wrap gap-3 items-center text-[10px] text-gray-400 pt-3 border-t border-gray-100"><span class="flex items-center gap-1"><i class="fa-solid fa-cube"></i> Unity 3D</span></div>
         </div>
     </div>
 </div>
@@ -370,42 +387,63 @@
 <!-- SINGLE DYNAMIC MODAL -->
 <div id="projectModal" class="modal-overlay" onclick="closeModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
-        <!-- Tombol Close untuk Modal Info Project -->
-        <button onclick="closeModalDirectly(event)" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition-colors"><i class="fas fa-times"></i></button>
+        <button onclick="closeModalDirectly(event)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition-colors z-10"><i class="fas fa-times"></i></button>
         
-        <img id="modalImage" src="" alt="" class="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100" draggable="false">
+        <div class="relative -mx-4 -mt-4 mb-4 rounded-t-2xl overflow-hidden">
+            <img id="modalImage" src="" alt="" class="w-full h-48 object-cover" draggable="false">
+        </div>
+        
         <div id="modalTags" class="flex flex-wrap gap-2 mb-2"></div>
         <h3 id="modalTitle" class="text-2xl font-bold text-navy mb-1"></h3>
         <p id="modalSubtitle" class="text-xs text-gray-400 mb-3 font-medium"></p>
         <div id="modalDesc" class="text-sm text-gray-600 leading-relaxed mb-6"></div>
-        <a id="modalLink" href="#" target="_blank" class="inline-flex items-center gap-2 bg-yellow text-navy font-bold px-6 py-3 rounded-full hover:shadow-lg transition-all">
+        <a id="modalLink" href="#" target="_blank" class="inline-flex items-center gap-2 bg-yellow text-navy font-bold px-6 py-3 rounded-full hover:shadow-lg transition-all w-full justify-center sm:w-auto">
             <i class="fas fa-download"></i> Lihat / Unduh Project
         </a>
     </div>
 </div>
 
 <script>
-    // ============================================
-    // 0. INISIALISASI FSLIGHTBOX
-    // ============================================
-    window.addEventListener('load', function() {
-        if (typeof refreshFsLightbox === 'undefined') {
-            console.error('❌ FsLightbox gagal dimuat! Pastikan file asset/js/fslightbox.js ada dan halaman dibuka lewat server (http://...), bukan file://');
-            return;
+    // DARK MODE LOGIC
+    (function() {
+        const storedTheme = localStorage.getItem('theme');
+        const themeToggle = document.getElementById('themeToggleProjects');
+        const themeIcon = document.getElementById('themeIconProjects');
+        const htmlElement = document.documentElement;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                if(themeIcon) { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
+            } else {
+                htmlElement.classList.remove('dark');
+                if(themeIcon) { themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
+            }
         }
-        refreshFsLightbox();
+        applyTheme(storedTheme || 'light');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                const isDark = htmlElement.classList.contains('dark');
+                const newTheme = isDark ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            });
+        }
+    })();
+
+    // FSLIGHTBOX INIT
+    window.addEventListener('load', function() {
+        if (typeof refreshFsLightbox !== 'undefined') refreshFsLightbox();
     });
 
-    // ============================================
-    // 1. DATA PROYEK (MUDAH DI-EDIT)
-    // ============================================
+    // PROJECT DATA
     const projectData = {
         'bogarasa': { 
             img: 'asset/Web_Bogarasa.jpg', 
             tags: ['Laravel', 'MySQL', 'Midtrans'], 
             title: 'Bogarasa', 
             subtitle: 'E-commerce Bakery/Makanan · Proyek Kelompok',
-            desc: 'Proyek Kelompok pada mata kuliah Perancangan & Pemodelan SI, Web Programming, Software Quality Assurance, dan Manajemen Proyek SI.<br><br><ul class="list-disc pl-4 space-y-1.5"><li>Membangun modul katalog, keranjang, checkout, manajemen pesanan MVC Laravel, menerapkan RBAC untuk admin & pelanggan.</li><li>Integrasi payment Midtrans via REST API, perbaikan bug transaksi hingga 100% akurat, automated testing Selenium, dan 4 dokumen UML.</li></ul>',
+            desc: 'Proyek Kelompok pada mata kuliah Perancangan & Pemodelan SI, Web Programming, Software Quality Assurance, dan Manajemen Proyek SI.<br><br><ul class="list-disc pl-4 space-y-1.5 text-gray-600"><li>Membangun modul katalog, keranjang, checkout, manajemen pesanan MVC Laravel, menerapkan RBAC untuk admin & pelanggan.</li><li>Integrasi payment Midtrans via REST API, perbaikan bug transaksi hingga 100% akurat, automated testing Selenium, dan 4 dokumen UML.</li></ul>',
             link: 'https://drive.google.com/your-bogarasa-link-here'
         },
         'santri': { 
@@ -445,7 +483,7 @@
             tags: ['Flutter', 'AI'], 
             title: 'BuildWise', 
             subtitle: 'Proyek Individu',
-            desc: '<ul class="list-disc pl-4 space-y-1"><li>Aplikasi manajemen anggaran proyek konstruksi dengan modul AI.</li><li>Skor kesehatan anggaran, prediksi pengeluaran bulan depan berbasis neural network.</li><li>Breakdown kategori pengeluaran terbesar, deteksi pola musiman, dan rekomendasi otomatis.</li></ul>',
+            desc: '<ul class="list-disc pl-4 space-y-1 text-gray-600"><li>Aplikasi manajemen anggaran proyek konstruksi dengan modul AI.</li><li>Skor kesehatan anggaran, prediksi pengeluaran bulan depan berbasis neural network.</li><li>Breakdown kategori pengeluaran terbesar, deteksi pola musiman, dan rekomendasi otomatis.</li></ul>',
             link: 'https://drive.google.com/your-buildwise-link-here'
         },
         'archibuild': { 
@@ -453,33 +491,28 @@
             tags: ['Unity 3D', 'AR'], 
             title: 'Archibuild Apps', 
             subtitle: 'Pengenalan Objek Arsitektur Berbasis AR',
-            desc: '<ul class="list-disc pl-4 space-y-1.5"><li>Merancang prototipe aplikasi, UI/UX, dan aset digitalnya.</li><li>Mengembangkan fitur augmented reality menggunakan Unity 3D.</li></ul>',
+            desc: '<ul class="list-disc pl-4 space-y-1.5 text-gray-600"><li>Merancang prototipe aplikasi, UI/UX, dan aset digitalnya.</li><li>Mengembangkan fitur augmented reality menggunakan Unity 3D.</li></ul>',
             link: 'https://drive.google.com/file/d/1s7OHfy7NwThwpn5nrtBXc3hhlg-fp3F6/view?usp=sharing'
         }
     };
 
-    // ============================================
-    // 2. LOGIKA MODAL DINAMIS (UNTUK DETAIL PROJECT)
-    // ============================================
+    // MODAL LOGIC
     function openModal(projectId) {
         const data = projectData[projectId];
         if(!data) return;
-        
         document.getElementById('modalImage').src = data.img;
         document.getElementById('modalTitle').innerText = data.title;
         document.getElementById('modalSubtitle').innerText = data.subtitle;
         document.getElementById('modalDesc').innerHTML = data.desc;
         document.getElementById('modalLink').href = data.link;
-        
         const tagsContainer = document.getElementById('modalTags');
         tagsContainer.innerHTML = '';
         data.tags.forEach(tag => {
             const span = document.createElement('span');
-            span.className = 'text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full';
+            span.className = 'text-[10px] font-bold bg-yellow-light text-yellow px-2.5 py-1 rounded-full border border-yellow/20';
             span.innerText = tag;
             tagsContainer.appendChild(span);
         });
-
         document.getElementById('projectModal').classList.add('active');
         document.body.style.overflow = 'hidden';
     }
@@ -513,9 +546,7 @@
         }
     });
 
-    // ============================================
-    // 3. FILTER, SEARCH, & ANIMASI HALUS
-    // ============================================
+    // FILTER & SEARCH
     const projectItems = document.querySelectorAll('.project-item');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const searchInput = document.getElementById('searchInput');
@@ -525,7 +556,6 @@
         if(grid) grid.style.minHeight = grid.offsetHeight + 'px';
         filterBtns.forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
-        
         projectItems.forEach(item => {
             const cats = item.dataset.category.split(' ');
             if (category === 'all' || cats.includes(category)) {
@@ -536,11 +566,7 @@
                 item.style.position = 'absolute';
             }
         });
-        
-        setTimeout(() => {
-            if(grid) grid.style.minHeight = 'auto';
-        }, 600);
-
+        setTimeout(() => { if(grid) grid.style.minHeight = 'auto'; }, 600);
         if(searchInput) searchInput.value = '';
     }
 
@@ -554,7 +580,6 @@
                 const listItems = item.querySelectorAll('li');
                 let listText = '';
                 listItems.forEach(li => listText += li.innerText.toLowerCase());
-
                 if (title.includes(val) || desc.includes(val) || listText.includes(val)) {
                     item.classList.remove('hidden-card');
                     item.style.position = 'relative';
@@ -564,26 +589,19 @@
                 }
             });
             filterBtns.forEach(btn => btn.classList.remove('active'));
-            
-            setTimeout(() => {
-                if(grid) grid.style.minHeight = 'auto';
-            }, 600);
+            setTimeout(() => { if(grid) grid.style.minHeight = 'auto'; }, 600);
         });
     }
 
-    // ============================================
-    // 4. JAVASCRIPT UNTUK MENGHILANGKAN LOADING SCREEN
-    // ============================================
+    // LOADING SCREEN
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
             const loadingScreen = document.getElementById('loading-screen');
             if(loadingScreen) {
                 loadingScreen.classList.add('hidden');
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 600);
+                setTimeout(() => { loadingScreen.style.display = 'none'; }, 600);
             }
-        }, 1200); // Loading akan hilang setelah 1.2 detik
+        }, 1200);
     });
 </script>
 </body>
