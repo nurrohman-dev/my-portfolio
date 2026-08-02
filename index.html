@@ -203,7 +203,19 @@
   <!-- Mobile Navigation -->
   <div class="lg:hidden flex items-center justify-between px-5 py-3 nav-inner">
     <a href="#home" class="flex items-center gap-2"><span class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow to-yellow-dark text-white font-display font-bold flex items-center justify-center text-xs">MN</span><span class="font-display font-extrabold text-navy text-sm">NURROHMAN</span></a>
-    <button id="menuToggle" aria-label="Menu" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-yellow-light transition-colors"><i class="fas fa-bars text-navy text-lg"></i></button>
+
+    <div class="flex items-center gap-2">
+      <!-- Tombol Dark Mode (Mobile) -->
+      <button id="themeToggleMobile" aria-label="Ubah tema" class="w-9 h-9 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition-all">
+        <i class="fas fa-moon text-base" id="themeIconMobile"></i>
+      </button>
+      <!-- Tombol Ganti Bahasa (Mobile) -->
+      <button id="langToggleMobile" aria-label="Ganti bahasa" class="px-3 py-2 rounded-full border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all flex items-center gap-1.5 font-semibold text-xs text-navy dark:text-white">
+        <i class="fas fa-language text-yellow"></i>
+        <span id="langTextMobile">EN</span>
+      </button>
+      <button id="menuToggle" aria-label="Menu" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-yellow-light transition-colors"><i class="fas fa-bars text-navy text-lg"></i></button>
+    </div>
   </div>
   
   <div id="mobileMenu" class="hidden lg:hidden bg-white backdrop-blur-md border-b border-gray-200 px-6 py-4 flex flex-col gap-2 text-gray-700 font-medium shadow-lg">
@@ -989,9 +1001,9 @@
     window.addEventListener("load", initHomeLightbox);
 
     // Catatan: Dark mode toggle SUDAH ditangani oleh script.js
-    // (event listener pada #themeToggle). Jangan duplikasi di sini,
-    // karena dua listener pada tombol yang sama akan saling
-    // membatalkan setiap klik.
+    // (event listener pada #themeToggle DAN #themeToggleMobile).
+    // Jangan duplikasi di sini, karena listener ganda pada tombol
+    // yang sama akan saling membatalkan setiap klik.
 
     // ============================================
     // LANGUAGE TRANSLATION LOGIC UNTUK INDEX
@@ -1190,12 +1202,15 @@
         let currentLang = localStorage.getItem('lang') || 'id';
         const langToggle = document.getElementById('langToggleIndex');
         const langText = document.getElementById('langTextIndex');
+        const langToggleMobile = document.getElementById('langToggleMobile');
+        const langTextMobile = document.getElementById('langTextMobile');
 
         // Fungsi untuk menerapkan bahasa
         function applyLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('lang', lang);
             langText.innerText = lang.toUpperCase();
+            if (langTextMobile) langTextMobile.innerText = lang.toUpperCase();
 
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -1209,13 +1224,15 @@
             });
         }
 
-        // Event listener tombol ganti bahasa
-        if (langToggle) {
-            langToggle.addEventListener('click', function() {
-                const newLang = currentLang === 'id' ? 'en' : 'id';
-                applyLanguage(newLang);
-            });
-        }
+        // Event listener tombol ganti bahasa (Desktop & Mobile)
+        [langToggle, langToggleMobile].forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', function() {
+                    const newLang = currentLang === 'id' ? 'en' : 'id';
+                    applyLanguage(newLang);
+                });
+            }
+        });
 
         // Terapkan bahasa yang tersimpan saat halaman dimuat
         applyLanguage(currentLang);

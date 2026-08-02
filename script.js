@@ -11,32 +11,35 @@ if (scrollProgress) {
 }
 
 // ============================================
-// 2. DARK MODE LOGIC
+// 2. DARK MODE LOGIC (mendukung tombol desktop & mobile sekaligus)
 // ============================================
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
+const themeToggles = document.querySelectorAll('#themeToggle, #themeToggleMobile');
+const themeIcons = document.querySelectorAll('#themeIcon, #themeIconMobile');
+
+function setThemeIcons(isDark) {
+    themeIcons.forEach(icon => {
+        icon.classList.toggle('fa-moon', !isDark);
+        icon.classList.toggle('fa-sun', isDark);
+    });
+}
 
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme === 'dark') {
     document.documentElement.classList.add('dark');
-    if (themeIcon) { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
+    setThemeIcons(true);
 } else if (currentTheme === 'light') {
     document.documentElement.classList.remove('dark');
-    if (themeIcon) { themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
+    setThemeIcons(false);
 }
 
-if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
+themeToggles.forEach(btn => {
+    btn.addEventListener('click', function() {
         document.documentElement.classList.toggle('dark');
-        if (document.documentElement.classList.contains('dark')) {
-            if (themeIcon) { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
-            localStorage.setItem('theme', 'dark');
-        } else {
-            if (themeIcon) { themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
-            localStorage.setItem('theme', 'light');
-        }
+        const isDark = document.documentElement.classList.contains('dark');
+        setThemeIcons(isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-}
+});
 
 // ============================================
 // 3. NAVBAR SCROLL
