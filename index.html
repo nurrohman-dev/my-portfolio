@@ -7,6 +7,17 @@
 <meta name="author" content="Muhammad Nurrohman">
 <title>Muhammad Nurrohman | Software & Web Developer</title>
 
+<!-- Terapkan dark mode SEBELUM apa pun dirender, supaya tidak ada kedipan (flash) putih -->
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) {}
+  })();
+</script>
+
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="asset/Fav icon.png">
 
@@ -134,7 +145,7 @@
         <div class="loader-ring"></div>
         <div class="loader-logo">MN</div>
     </div>
-    <p class="mt-6 text-sm font-medium text-gray-400 tracking-wider animate-pulse">Memuat Portofolio...</p>
+    <p class="mt-6 text-sm font-medium text-gray-400 tracking-wider animate-pulse" data-i18n="loading_text">Memuat Portofolio...</p>
 </div>
 
 <!-- SCROLL PROGRESS -->
@@ -156,29 +167,34 @@
       <button id="themeToggle" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition-all">
         <i class="fas fa-moon text-lg" id="themeIcon"></i>
       </button>
+      <!-- Tombol Ganti Bahasa -->
+      <button id="langToggleIndex" class="px-4 py-2 rounded-full border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all flex items-center gap-2 font-semibold text-sm text-navy dark:text-white">
+          <i class="fas fa-language text-yellow"></i>
+          <span id="langTextIndex">EN</span>
+      </button>
     </div>
     
     <div class="flex items-center gap-1 text-sm font-medium text-gray-600">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#portfolio" class="nav-link">Portfolio</a>
-      <a href="#achievement" class="nav-link">Achievement</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#home" class="nav-link active" data-i18n="nav_home">Home</a>
+      <a href="#services" class="nav-link" data-i18n="nav_services">Services</a>
+      <a href="#about" class="nav-link" data-i18n="nav_about">About</a>
+      <a href="#skills" class="nav-link" data-i18n="nav_skills">Skills</a>
+      <a href="#portfolio" class="nav-link" data-i18n="nav_portfolio">Portfolio</a>
+      <a href="#achievement" class="nav-link" data-i18n="nav_achievement">Achievement</a>
+      <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
     </div>
     
     <div class="flex items-center gap-3 pr-3">
       <a href="https://mn-studios.blogspot.com/" target="_blank" rel="noopener" 
          class="group px-5 py-2.5 rounded-full border-2 border-gray-200 text-navy text-sm font-semibold hover:border-yellow hover:bg-yellow-light transition-all duration-300 flex items-center gap-2.5 shadow-sm hover:shadow-md">
          <i class="fas fa-pen-nib text-yellow group-hover:scale-110 transition-transform"></i> 
-         <span>Blog</span>
+         <span data-i18n="nav_blog">Blog</span>
       </a>
       
       <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener"
          class="group relative px-6 py-2.5 rounded-full bg-navy text-white text-sm font-semibold hover:bg-yellow hover:text-navy transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 overflow-hidden">
          <i class="fas fa-file-lines group-hover:-translate-x-1 transition-transform duration-300"></i> 
-         <span>Resume</span>
+         <span data-i18n="nav_resume">Resume</span>
          <i class="fas fa-arrow-right absolute right-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-navy"></i>
       </a>
     </div>
@@ -191,22 +207,22 @@
   </div>
   
   <div id="mobileMenu" class="hidden lg:hidden bg-white backdrop-blur-md border-b border-gray-200 px-6 py-4 flex flex-col gap-2 text-gray-700 font-medium shadow-lg">
-    <a href="#home" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-house w-4 text-center"></i> Home</a>
-    <a href="#services" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-gear w-4 text-center"></i> Services</a>
-    <a href="#about" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-user w-4 text-center"></i> About</a>
-    <a href="#skills" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-layer-group w-4 text-center"></i> Skills</a>
-    <a href="#portfolio" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-star w-4 text-center"></i> Portfolio</a>
-    <a href="#achievement" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-trophy w-4 text-center"></i> Achievement</a>
-    <a href="#contact" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-envelope w-4 text-center"></i> Contact</a>
+    <a href="#home" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-house w-4 text-center"></i> <span data-i18n="nav_home">Home</span></a>
+    <a href="#services" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-gear w-4 text-center"></i> <span data-i18n="nav_services">Services</span></a>
+    <a href="#about" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-user w-4 text-center"></i> <span data-i18n="nav_about">About</span></a>
+    <a href="#skills" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-layer-group w-4 text-center"></i> <span data-i18n="nav_skills">Skills</span></a>
+    <a href="#portfolio" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-star w-4 text-center"></i> <span data-i18n="nav_portfolio">Portfolio</span></a>
+    <a href="#achievement" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-trophy w-4 text-center"></i> <span data-i18n="nav_achievement">Achievement</span></a>
+    <a href="#contact" class="py-3 px-4 rounded-lg hover:bg-yellow-light hover:text-yellow transition-all flex items-center gap-3"><i class="fas fa-envelope w-4 text-center"></i> <span data-i18n="nav_contact">Contact</span></a>
     
     <a href="https://mn-studios.blogspot.com/" target="_blank" rel="noopener" 
        class="py-3 px-4 rounded-lg bg-yellow-light text-yellow font-semibold text-center mt-2 hover:bg-yellow hover:text-white transition-all flex items-center justify-center gap-2 border border-yellow/30">
-       <i class="fas fa-pen-nib"></i> Kunjungi Blog
+       <i class="fas fa-pen-nib"></i> <span data-i18n="nav_blog">Kunjungi Blog</span>
     </a>
     
     <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener" 
        class="py-3 px-4 rounded-lg bg-navy text-white font-bold text-center hover:bg-yellow hover:text-navy transition-all mt-2 flex items-center justify-center gap-2 shadow-md">
-       <i class="fas fa-file-arrow-down"></i> Download Resume
+       <i class="fas fa-file-arrow-down"></i> <span data-i18n="nav_resume">Download Resume</span>
     </a>
   </div>
 </div>
@@ -231,45 +247,45 @@
 
       <div class="reveal">
         <div class="relative inline-flex items-center gap-2 px-6 py-2.5 mb-6 border-2 border-yellow/40 text-navy font-semibold text-sm rounded-full bg-yellow-light">
-          <span>👋</span><span>Hallo, Semua!</span>
+          <span>👋</span><span data-i18n="hero_greeting">Hallo, Semua!</span>
         </div>
         
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-          Saya <span class="text-yellow relative inline-block pb-1">
+          <span data-i18n="hero_i_am">Saya</span> <span class="text-yellow relative inline-block pb-1">
             Muhammad Nurrohman
             <svg class="absolute -bottom-0 left-0 w-full h-1.5" viewBox="0 0 100 8" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 4 Q 50 0, 100 4" stroke="#F5A623" stroke-width="3" fill="none" stroke-linecap="round"/>
             </svg>
           </span>,<br>
-          <span class="inline-block pt-2">Software &amp; Web Developer.</span>
+          <span class="inline-block pt-2" data-i18n="hero_title">Software &amp; Web Developer.</span>
         </h1>
         
-        <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl mb-8">
+        <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl mb-8" data-i18n="hero_desc">
           Mahasiswa Sistem Informasi di Universitas Bina Sarana Informatika (IPK 3.93/4.00) yang membangun aplikasi web dengan Laravel dan aplikasi mobile dengan Flutter. Sebelum serius di dunia coding, sudah lebih dulu 3+ tahun berkecimpung sebagai desainer grafis dan kontributor Adobe Stock &amp; Shutterstock dengan lebih dari 30.000 karya lolos kurasi.
         </p>
 
         <div class="flex gap-6 mt-6 text-navy">
             <div>
                 <span class="block text-2xl font-extrabold text-yellow">3+</span>
-                <span class="text-xs font-medium text-gray-500">Tahun Pengalaman</span>
+                <span class="text-xs font-medium text-gray-500" data-i18n="hero_exp_years">Tahun Pengalaman</span>
             </div>
             <div class="border-l border-gray-300 pl-6">
                 <span class="block text-2xl font-extrabold text-yellow">30k+</span>
-                <span class="text-xs font-medium text-gray-500">Aset Digital Terkurasi</span>
+                <span class="text-xs font-medium text-gray-500" data-i18n="hero_assets">Aset Digital Terkurasi</span>
             </div>
             <div class="border-l border-gray-300 pl-6">
                 <span class="block text-2xl font-extrabold text-yellow">7+</span>
-                <span class="text-xs font-medium text-gray-500">Proyek Dirilis</span>
+                <span class="text-xs font-medium text-gray-500" data-i18n="hero_projects">Proyek Dirilis</span>
             </div>
         </div>
         
         <div class="flex flex-wrap gap-4 mt-8">
           <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener" class="cv-btn w-full max-w-[280px] h-[48px] block group">
             <div class="pill-bg w-full"></div>
-            <div class="pill-label w-[190px]"><span class="text-sm">Lihat CV Saya</span></div>
+            <div class="pill-label w-[190px]"><span class="text-sm" data-i18n="hero_btn_cv">Lihat CV Saya</span></div>
             <div class="pill-arrow" style="left:200px;"><i class="fas fa-arrow-right text-navy text-sm"></i></div>
           </a>
-          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-gray-300 hover:border-yellow text-navy font-semibold transition-all hover:bg-yellow-light"><i class="fas fa-comment"></i> Hubungi Saya</a>
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-gray-300 hover:border-yellow text-navy font-semibold transition-all hover:bg-yellow-light"><i class="fas fa-comment"></i> <span data-i18n="hero_btn_contact">Hubungi Saya</span></a>
         </div>
       </div>
 
@@ -282,7 +298,7 @@
     <!-- BARIS BAWAH: NAVY (Miring ke kanan) -->
     <div class="w-full bg-navy h-12 transform -skew-x-6 mt-[-30px] z-0"></div>
     
-    <!-- BARIS ATAS: KUNING + TEKS (Berjalan di atasnya, tetapi tidak saling menutupi) -->
+    <!-- BARIS ATAS: KUNING + TEKS (Berjalan di atasnya) -->
     <div class="bg-gradient-to-r from-yellow to-yellow-dark py-5 relative z-10 overflow-hidden whitespace-nowrap shadow-lg mt-[-24px]">
       <div class="marquee-track flex items-center gap-12 w-max">
         
@@ -310,19 +326,19 @@
 <section id="services" class="bg-white py-24">
   <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="mb-16 reveal text-center">
-      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-gear text-yellow"></i><span class="font-semibold text-gray-700 uppercase tracking-wider text-sm">Services</span></div>
+      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-gear text-yellow"></i><span class="font-semibold text-gray-700 uppercase tracking-wider text-sm" data-i18n="services_label">Services</span></div>
       <h2 class="text-4xl sm:text-5xl font-extrabold">
-        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Layanan</span> 
-        <span class="text-navy">yang Saya Tawarkan</span>
+        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent" data-i18n="services_title_1">Layanan</span> 
+        <span class="text-navy" data-i18n="services_title_2">yang Saya Tawarkan</span>
       </h2>
-      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Berbagai layanan pengembangan software dan desain yang dapat membantu mewujudkan ide digital Anda</p>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto" data-i18n="services_desc">Berbagai layanan pengembangan software dan desain yang dapat membantu mewujudkan ide digital Anda</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-24">
       <div class="reveal reveal-delay-1 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
         <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-code text-3xl text-yellow"></i></div>
-        <h3 class="text-xl font-bold mt-14 mb-3">Web Development</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Membangun aplikasi web dari awal sampai jadi dengan Laravel, MySQL, dan REST API yang aman dan scalable.</p>
+        <h3 class="text-xl font-bold mt-14 mb-3" data-i18n="service_web_title">Web Development</h3>
+        <p class="text-sm text-gray-600 leading-relaxed" data-i18n="service_web_desc">Membangun aplikasi web dari awal sampai jadi dengan Laravel, MySQL, dan REST API yang aman dan scalable.</p>
         <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Laravel Framework</li>
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> REST API Development</li>
@@ -331,8 +347,8 @@
       </div>
       <div class="reveal reveal-delay-2 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
         <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-mobile-screen-button text-3xl text-yellow"></i></div>
-        <h3 class="text-xl font-bold mt-14 mb-3">Mobile Development</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Mengembangkan aplikasi Android dengan Flutter, dari UI/UX sampai fitur intinya berjalan optimal.</p>
+        <h3 class="text-xl font-bold mt-14 mb-3" data-i18n="service_mobile_title">Mobile Development</h3>
+        <p class="text-sm text-gray-600 leading-relaxed" data-i18n="service_mobile_desc">Mengembangkan aplikasi Android dengan Flutter, dari UI/UX sampai fitur intinya berjalan optimal.</p>
         <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Flutter & Dart</li>
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Cross-Platform</li>
@@ -341,8 +357,8 @@
       </div>
       <div class="reveal reveal-delay-3 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
         <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-palette text-3xl text-yellow"></i></div>
-        <h3 class="text-xl font-bold mt-14 mb-3">Graphic Design</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">3+ tahun mengerjakan branding, ilustrasi, dan aset digital untuk klien dan platform stock.</p>
+        <h3 class="text-xl font-bold mt-14 mb-3" data-i18n="service_design_title">Graphic Design</h3>
+        <p class="text-sm text-gray-600 leading-relaxed" data-i18n="service_design_desc">3+ tahun mengerjakan branding, ilustrasi, dan aset digital untuk klien dan platform stock.</p>
         <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Adobe Illustrator</li>
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Adobe Photoshop</li>
@@ -351,8 +367,8 @@
       </div>
       <div class="reveal reveal-delay-4 service-card relative flex flex-col items-center text-center p-8 rounded-3xl bg-gradient-to-b from-yellow-light to-white border-2 border-yellow/20">
         <div class="service-icon-wrapper absolute -top-12 w-24 h-24 rounded-2xl bg-white border-2 border-yellow flex items-center justify-center shadow-lg"><i class="fas fa-database text-3xl text-yellow"></i></div>
-        <h3 class="text-xl font-bold mt-14 mb-3">Database &amp; BI</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">Pemodelan basis data (ERD, LRS) serta dashboard analitik dengan Power BI.</p>
+        <h3 class="text-xl font-bold mt-14 mb-3" data-i18n="service_db_title">Database &amp; BI</h3>
+        <p class="text-sm text-gray-600 leading-relaxed" data-i18n="service_db_desc">Pemodelan basis data (ERD, LRS) serta dashboard analitik dengan Power BI.</p>
         <ul class="mt-4 text-left text-sm text-gray-500 space-y-2">
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> ERD & LRS Design</li>
           <li class="flex items-center gap-2"><i class="fas fa-check text-yellow text-xs"></i> Power BI Dashboard</li>
@@ -363,7 +379,7 @@
   </div>
 </section>
 
-<!-- ABOUT SECTION (DENGAN FOTO BARU) -->
+<!-- ABOUT SECTION -->
 <section id="about" class="bg-gradient-to-br from-mist to-yellow-light/30 py-24 relative overflow-hidden">
   <div class="absolute top-10 right-10 w-32 h-32 bg-yellow/10 rounded-full blur-2xl"></div>
   <div class="absolute bottom-10 left-10 w-48 h-48 bg-yellow/5 rounded-full blur-3xl"></div>
@@ -373,7 +389,6 @@
       <div class="relative">
         <div class="absolute inset-0 bg-gradient-to-br from-yellow to-yellow-dark rounded-[32px] blur-xl opacity-20"></div>
         
-        <!-- UBAHAN: KOTAK NAVY DIGANTI FOTO -->
         <div class="w-72 sm:w-80 aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl border-4 border-white relative z-10 bg-white">
           <img src="asset/Profile2.webp" alt="Muhammad Nurrohman" class="w-full h-full object-cover">
         </div>
@@ -382,23 +397,23 @@
     </div>
 
     <div class="reveal w-full lg:w-3/5">
-      <div class="flex items-center gap-2 mb-3"><i class="fas fa-user text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm">About Me</span></div>
+      <div class="flex items-center gap-2 mb-3"><i class="fas fa-user text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm" data-i18n="about_label">About Me</span></div>
       <h2 class="text-4xl sm:text-5xl font-extrabold mb-6">
-        Siapa itu <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Muhammad Nurrohman</span>?
+        <span data-i18n="about_question">Siapa itu</span> <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Muhammad Nurrohman</span>?
       </h2>
-      <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-4">Mahasiswa Sistem Informasi semester 5 di Universitas Bina Sarana Informatika dengan IPK 3.93/4.00. Terbiasa membangun aplikasi dari nol sampai jadi — mulai dari web dengan Laravel sampai mobile dengan Flutter.</p>
-      <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-8">Sebelum serius di dunia coding, lebih dulu 3 tahun berkecimpung sebagai desainer grafis dan kontributor Adobe Stock &amp; Shutterstock, jadi terbiasa kerja rapi dengan tenggat yang ketat.</p>
+      <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-4" data-i18n="about_desc_1">Mahasiswa Sistem Informasi semester 5 di Universitas Bina Sarana Informatika dengan IPK 3.93/4.00. Terbiasa membangun aplikasi dari nol sampai jadi — mulai dari web dengan Laravel sampai mobile dengan Flutter.</p>
+      <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-8" data-i18n="about_desc_2">Sebelum serius di dunia coding, lebih dulu 3 tahun berkecimpung sebagai desainer grafis dan kontributor Adobe Stock &amp; Shutterstock, jadi terbiasa kerja rapi dengan tenggat yang ketat.</p>
 
       <div class="grid grid-cols-3 gap-4 sm:gap-8 text-center mb-8 bg-white rounded-2xl p-6 shadow-md border border-gray-100">
-        <div class="relative"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">30rb+</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600">Karya Stock</p></div>
-        <div class="relative border-x border-gray-200"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">3.93</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600">IPK / 4.00</p></div>
-        <div class="relative"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">3+</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600">Tahun</p></div>
+        <div class="relative"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">30rb+</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600" data-i18n="about_stat_stock">Karya Stock</p></div>
+        <div class="relative border-x border-gray-200"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">3.93</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600" data-i18n="about_stat_ipk">IPK / 4.00</p></div>
+        <div class="relative"><span class="block text-yellow font-extrabold text-3xl sm:text-4xl">3+</span><p class="text-xs sm:text-sm font-medium mt-2 text-gray-600" data-i18n="about_stat_years">Tahun</p></div>
       </div>
 
       <div class="flex items-center gap-6 flex-wrap">
         <a href="https://drive.google.com/file/d/1wNIbZ2ogrIujODCDTS5OIOoCdfNAqQk4/view?usp=sharing" target="_blank" rel="noopener" class="cv-btn w-full max-w-[300px] h-[48px] block group">
           <div class="pill-bg w-full"></div>
-          <div class="pill-label w-[210px]"><span class="text-sm">Download CV Saya</span></div>
+          <div class="pill-label w-[210px]"><span class="text-sm" data-i18n="about_btn_cv">Download CV Saya</span></div>
           <div class="pill-arrow" style="left:220px;"><i class="fas fa-arrow-down text-navy text-sm"></i></div>
         </a>
         <div class="flex gap-3">
@@ -416,13 +431,13 @@
     <div class="reveal mb-16 text-center">
       <div class="flex items-center justify-center gap-2 mb-3">
         <i class="fas fa-layer-group text-yellow"></i>
-        <span class="font-semibold text-navy uppercase tracking-wider text-sm">Keahlian Teknis</span>
+        <span class="font-semibold text-navy uppercase tracking-wider text-sm" data-i18n="skills_label">Keahlian Teknis</span>
       </div>
       <h2 class="text-4xl sm:text-5xl font-extrabold">
         <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Skills</span> 
-        <span class="text-navy">&amp; Tools</span>
+        <span class="text-navy" data-i18n="skills_and">&amp; Tools</span>
       </h2>
-      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto" data-i18n="skills_desc">
         Teknologi, framework, dan tools yang saya kuasai untuk membangun solusi digital
       </p>
     </div>
@@ -432,7 +447,7 @@
       <div class="reveal reveal-delay-1 skill-card p-6 rounded-2xl shadow-sm">
         <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
           <i class="fas fa-code text-yellow"></i>
-          <h3 class="font-bold text-lg">Bahasa Pemrograman</h3>
+          <h3 class="font-bold text-lg" data-i18n="skill_lang_title">Bahasa Pemrograman</h3>
         </div>
         <div class="grid grid-cols-3 gap-4 text-center">
           <div class="flex flex-col items-center gap-2">
@@ -462,7 +477,7 @@
       <div class="reveal reveal-delay-2 skill-card p-6 rounded-2xl shadow-sm">
         <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
           <i class="fas fa-cubes text-yellow"></i>
-          <h3 class="font-bold text-lg">Framework &amp; Library</h3>
+          <h3 class="font-bold text-lg" data-i18n="skill_fw_title">Framework &amp; Library</h3>
         </div>
         <div class="grid grid-cols-2 gap-4 text-center">
           <div class="flex flex-col items-center gap-2">
@@ -488,7 +503,7 @@
       <div class="reveal reveal-delay-3 skill-card p-6 rounded-2xl shadow-sm">
         <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
           <i class="fas fa-database text-yellow"></i>
-          <h3 class="font-bold text-lg">Basis Data</h3>
+          <h3 class="font-bold text-lg" data-i18n="skill_db_title">Basis Data</h3>
         </div>
         <div class="flex justify-center items-center text-center">
           <div class="flex flex-col items-center gap-2">
@@ -502,7 +517,7 @@
       <div class="reveal reveal-delay-1 skill-card p-6 rounded-2xl shadow-sm">
         <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
           <i class="fas fa-tools text-yellow"></i>
-          <h3 class="font-bold text-lg">Tools &amp; Platform</h3>
+          <h3 class="font-bold text-lg" data-i18n="skill_tools_title">Tools &amp; Platform</h3>
         </div>
         <div class="grid grid-cols-3 gap-4 text-center">
           <div class="flex flex-col items-center gap-2">
@@ -536,7 +551,7 @@
       <div class="reveal reveal-delay-2 skill-card p-6 rounded-2xl shadow-sm">
         <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
           <i class="fas fa-project-diagram text-yellow"></i>
-          <h3 class="font-bold text-lg">Pemodelan &amp; Metodologi</h3>
+          <h3 class="font-bold text-lg" data-i18n="skill_model_title">Pemodelan &amp; Metodologi</h3>
         </div>
         <div class="grid grid-cols-2 gap-4 text-center">
           <div class="flex flex-col items-center gap-2">
@@ -574,7 +589,7 @@
       <div class="reveal reveal-delay-3 skill-card p-6 rounded-2xl shadow-sm">
         <div class="flex items-center gap-3 mb-4 border-b border-gray-200 pb-3">
           <i class="fas fa-paint-brush text-yellow"></i>
-          <h3 class="font-bold text-lg">Data, BI &amp; Multimedia</h3>
+          <h3 class="font-bold text-lg" data-i18n="skill_multimedia_title">Data, BI &amp; Multimedia</h3>
         </div>
         <div class="grid grid-cols-3 gap-4 text-center">
           <div class="flex flex-col items-center gap-2">
@@ -623,24 +638,24 @@
   
   <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
     <div class="reveal mb-12 text-center">
-      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-star text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm">Portfolio</span></div>
+      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-star text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm" data-i18n="portfolio_label">Portfolio</span></div>
       <h2 class="text-4xl sm:text-5xl font-extrabold">
-        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Proyek</span> 
-        <span class="text-navy">Terbaru Saya</span>
+        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent" data-i18n="portfolio_title_1">Proyek</span> 
+        <span class="text-navy" data-i18n="portfolio_title_2">Terbaru Saya</span>
       </h2>
-      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Beberapa proyek yang telah saya kerjakan dan banggakan</p>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto" data-i18n="portfolio_desc">Beberapa proyek yang telah saya kerjakan dan banggakan</p>
     </div>
 
     <div class="reveal mb-10 flex justify-end">
       <a href="projects.html" class="btn-view-all group">
-        <span>Lihat Semua Proyek</span>
+        <span data-i18n="portfolio_btn">Lihat Semua Proyek</span>
         <span class="circle-arrow"><i class="fas fa-arrow-right text-sm"></i></span>
       </a>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
       
-      <!-- Kartu 1: Angkotin Bogor (Ganti posisi ke paling depan) -->
+      <!-- Kartu 1: Angkotin Bogor -->
       <div class="reveal reveal-delay-1 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
           <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
               <a href="asset/Angkotin.png" data-fslightbox="index-gallery" data-title="Angkotin Bogor" class="block w-full h-full" onclick="event.stopPropagation()">
@@ -654,7 +669,7 @@
                   <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
               </div>
               <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Angkotin Bogor</h3>
-              <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi Android berbasis OOP di Dart yang menyediakan info rute angkutan kota di Bogor.</p>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3" data-i18n="card_angkotin_desc">Aplikasi Android berbasis OOP di Dart yang menyediakan info rute angkutan kota di Bogor.</p>
               <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
                   <span>#Mobile App</span>
                   <span>#Information</span>
@@ -677,7 +692,7 @@
                   <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
               </div>
               <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Shoezy</h3>
-              <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.</p>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3" data-i18n="card_shoezy_desc">Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.</p>
               <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
                   <span>#Mobile App</span>
                   <span>#E-Commerce</span>
@@ -700,7 +715,7 @@
                   <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
               </div>
               <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Bogarasa</h3>
-              <p class="text-sm text-gray-600 leading-relaxed mb-3">E-commerce bakery dengan katalog, keranjang, checkout, dan integrasi payment Midtrans yang akurat 100%.</p>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3" data-i18n="card_bogarasa_desc">E-commerce bakery dengan katalog, keranjang, checkout, dan integrasi payment Midtrans yang akurat 100%.</p>
               <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
                   <span>#E-Commerce</span>
                   <span>#Payment Gateway</span>
@@ -717,12 +732,12 @@
 <section id="achievement" class="bg-white py-24">
   <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="reveal mb-16 text-center">
-      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-trophy text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm">Achievement</span></div>
+      <div class="flex items-center justify-center gap-2 mb-3"><i class="fas fa-trophy text-yellow"></i><span class="font-semibold text-navy uppercase tracking-wider text-sm" data-i18n="achievement_label">Achievement</span></div>
       <h2 class="text-4xl sm:text-5xl font-extrabold">
-        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent">Pencapaian</span> 
-        <span class="text-navy">yang Saya Peroleh</span>
+        <span class="bg-gradient-to-r from-yellow to-yellow-dark bg-clip-text text-transparent" data-i18n="achievement_title_1">Pencapaian</span> 
+        <span class="text-navy" data-i18n="achievement_title_2">yang Saya Peroleh</span>
       </h2>
-      <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Perjalanan dan pencapaian yang telah saya raih selama berkarya</p>
+      <p class="mt-4 text-gray-500 max-w-2xl mx-auto" data-i18n="achievement_desc">Perjalanan dan pencapaian yang telah saya raih selama berkarya</p>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-x-8 gap-y-6">
@@ -736,8 +751,8 @@
             <i class="fas fa-circle-check text-blue-500 absolute -bottom-1 -right-1 text-sm bg-white rounded-full group-hover:animate-pulse transition-all"></i>
           </div>
           <div>
-            <h4 class="font-semibold text-base group-hover:text-yellow transition-colors">Sertifikasi BNSP — Database Administrator</h4>
-            <p class="text-xs text-gray-500 mt-1">Melalui LSP BSI, 2024</p>
+            <h4 class="font-semibold text-base group-hover:text-yellow transition-colors" data-i18n="ach_bnsp_title">Sertifikasi BNSP — Database Administrator</h4>
+            <p class="text-xs text-gray-500 mt-1" data-i18n="ach_bnsp_desc">Melalui LSP BSI, 2024</p>
           </div>
         </a>
 
@@ -748,8 +763,8 @@
             <i class="fas fa-circle-check text-blue-500 absolute -bottom-1 -right-1 text-sm bg-white rounded-full group-hover:animate-pulse transition-all"></i>
           </div>
           <div>
-            <h4 class="font-semibold text-base group-hover:text-yellow transition-colors">Junior Graphic Designer — TuK Indonesia</h4>
-            <p class="text-xs text-gray-500 mt-1">Jakarta Selatan, Apr–Jul 2022</p>
+            <h4 class="font-semibold text-base group-hover:text-yellow transition-colors" data-i18n="ach_tuk_title">Junior Graphic Designer — TuK Indonesia</h4>
+            <p class="text-xs text-gray-500 mt-1" data-i18n="ach_tuk_desc">Jakarta Selatan, Apr–Jul 2022</p>
           </div>
         </a>
 
@@ -757,8 +772,8 @@
         <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
           <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-chalkboard-user text-yellow"></i></div>
           <div>
-            <h4 class="font-semibold text-base">Trainer Power BI — SMK Pembangunan</h4>
-            <p class="text-xs text-gray-500 mt-1">Melatih 34 siswa bersama tim 10 orang</p>
+            <h4 class="font-semibold text-base" data-i18n="ach_pbi_title">Trainer Power BI — SMK Pembangunan</h4>
+            <p class="text-xs text-gray-500 mt-1" data-i18n="ach_pbi_desc">Melatih 34 siswa bersama tim 10 orang</p>
           </div>
         </div>
       </div>
@@ -770,8 +785,8 @@
         <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
           <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-people-group text-yellow"></i></div>
           <div>
-            <h4 class="font-semibold text-base">Anggota KPPS KPU RI</h4>
-            <p class="text-xs text-gray-500 mt-1">Input &amp; rekapitulasi suara Pemilu 2024 lewat Sirekap</p>
+            <h4 class="font-semibold text-base" data-i18n="ach_kpps_title">Anggota KPPS KPU RI</h4>
+            <p class="text-xs text-gray-500 mt-1" data-i18n="ach_kpps_desc">Input &amp; rekapitulasi suara Pemilu 2024 lewat Sirekap</p>
           </div>
         </div>
 
@@ -779,8 +794,8 @@
         <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
           <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-lightbulb text-yellow"></i></div>
           <div>
-            <h4 class="font-semibold text-base">Pendiri MN Studio's</h4>
-            <p class="text-xs text-gray-500 mt-1">Studio kreatif independen bidang desain & produksi visual</p>
+            <h4 class="font-semibold text-base" data-i18n="ach_mn_title">Pendiri MN Studio's</h4>
+            <p class="text-xs text-gray-500 mt-1" data-i18n="ach_mn_desc">Studio kreatif independen bidang desain & produksi visual</p>
           </div>
         </div>
 
@@ -788,8 +803,8 @@
         <div class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60">
           <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-pen-nib text-yellow"></i></div>
           <div>
-            <h4 class="font-semibold text-base">Kontributor Adobe Stock &amp; Shutterstock</h4>
-            <p class="text-xs text-gray-500 mt-1">30.000+ aset vektor & animasi lolos kurasi sejak 2024</p>
+            <h4 class="font-semibold text-base" data-i18n="ach_stock_title">Kontributor Adobe Stock &amp; Shutterstock</h4>
+            <p class="text-xs text-gray-500 mt-1" data-i18n="ach_stock_desc">30.000+ aset vektor & animasi lolos kurasi sejak 2024</p>
           </div>
         </div>
       </div>
@@ -803,40 +818,40 @@
   <div class="absolute bottom-0 left-0 w-80 h-80 bg-yellow/10 rounded-full blur-3xl"></div>
   
   <div class="max-w-3xl mx-auto text-center px-6 relative z-10">
-    <h2 class="reveal text-4xl sm:text-5xl font-extrabold mb-6">Punya proyek, ide, atau peluang magang?</h2>
-    <p class="reveal text-lg text-gray-600 mb-10">Saya terbuka untuk <span class="text-yellow font-semibold">berdiskusi dan bekerja sama.</span> Jangan ragu untuk menghubungi!</p>
+    <h2 class="reveal text-4xl sm:text-5xl font-extrabold mb-6" data-i18n="contact_title">Punya proyek, ide, atau peluang magang?</h2>
+    <p class="reveal text-lg text-gray-600 mb-10" data-i18n="contact_desc">Saya terbuka untuk <span class="text-yellow font-semibold">berdiskusi dan bekerja sama.</span> Jangan ragu untuk menghubungi!</p>
 
-    <!-- FORM KONTAK: versi label-di-atas (stacked), tema tetap kuning/navy -->
+    <!-- FORM KONTAK -->
     <form class="reveal reveal-delay-1 contact-form flex flex-col gap-5 border-2 border-gray-200 rounded-2xl px-6 sm:px-8 py-8 shadow-lg bg-white transition-all text-left" 
           action="https://formspree.io/f/mojgovjg" 
           method="POST">
 
       <div class="grid sm:grid-cols-2 gap-5">
         <div class="flex flex-col gap-2">
-          <label for="contact-name" class="text-sm font-semibold text-navy">Nama Lengkap <span class="text-yellow">*</span></label>
+          <label for="contact-name" class="text-sm font-semibold text-navy" data-i18n="form_name">Nama Lengkap <span class="text-yellow">*</span></label>
           <input type="text" id="contact-name" name="name" required placeholder="Tulis nama lengkap Anda"
                  class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 transition-all">
         </div>
         <div class="flex flex-col gap-2">
-          <label for="contact-email" class="text-sm font-semibold text-navy">Email <span class="text-yellow">*</span></label>
+          <label for="contact-email" class="text-sm font-semibold text-navy" data-i18n="form_email">Email <span class="text-yellow">*</span></label>
           <input type="email" id="contact-email" name="email" required placeholder="nama@email.com"
                  class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 transition-all">
         </div>
       </div>
 
       <div class="flex flex-col gap-2">
-        <label for="contact-subject" class="text-sm font-semibold text-navy">Subjek</label>
+        <label for="contact-subject" class="text-sm font-semibold text-navy" data-i18n="form_subject">Subjek</label>
         <input type="text" id="contact-subject" name="subject" placeholder="Contoh: Peluang Magang / Kolaborasi Proyek"
                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 transition-all">
       </div>
 
       <div class="flex flex-col gap-2">
-        <label for="contact-message" class="text-sm font-semibold text-navy">Pesan <span class="text-yellow">*</span></label>
+        <label for="contact-message" class="text-sm font-semibold text-navy" data-i18n="form_message">Pesan <span class="text-yellow">*</span></label>
         <textarea id="contact-message" name="message" required placeholder="Tulis pesan Anda di sini..."
                   class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 resize-none min-h-[140px] transition-all"></textarea>
       </div>
       
-      <button type="submit" class="w-full sm:w-auto sm:self-end bg-gradient-to-r from-yellow to-yellow-dark text-navy font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all hover:scale-105">Kirim Pesan</button>
+      <button type="submit" class="w-full sm:w-auto sm:self-end bg-gradient-to-r from-yellow to-yellow-dark text-navy font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all hover:scale-105" data-i18n="form_btn">Kirim Pesan</button>
     </form>
 
     <div class="reveal reveal-delay-2 flex justify-center flex-wrap gap-6 mt-12">
@@ -866,10 +881,10 @@
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-sm">© 2026 Muhammad Nurrohman. All rights reserved.</p>
       <div class="flex gap-6 text-sm">
-        <a href="#home" class="hover:text-yellow transition-colors">Home</a>
-        <a href="#services" class="hover:text-yellow transition-colors">Services</a>
-        <a href="#portfolio" class="hover:text-yellow transition-colors">Portfolio</a>
-        <a href="#contact" class="hover:text-yellow transition-colors">Contact</a>
+        <a href="#home" class="hover:text-yellow transition-colors" data-i18n="nav_home">Home</a>
+        <a href="#services" class="hover:text-yellow transition-colors" data-i18n="nav_services">Services</a>
+        <a href="#portfolio" class="hover:text-yellow transition-colors" data-i18n="nav_portfolio">Portfolio</a>
+        <a href="#contact" class="hover:text-yellow transition-colors" data-i18n="nav_contact">Contact</a>
       </div>
       <div class="flex gap-4">
         <a href="javascript:void(0)" 
@@ -892,12 +907,11 @@
 <!-- TAMBAHAN: FSLIGHTBOX & MODAL UNTUK INDEX.HTML -->
 <!-- ========================================== -->
 
-<!-- 1. Library FsLightbox (untuk preview gambar fullscreen dengan tombol Close) -->
+<!-- 1. Library FsLightbox -->
 <script src="asset/js/fslightbox.js"></script>
 
 <!-- 2. CSS Tambahan untuk Modal Info & Perbaikan Lightbox -->
 <style>
-  /* Override agar tombol Lightbox terlihat (Tailwind mereset style button) */
   .fslightbox-container button,
   .fslightbox-container svg,
   .fslightbox-toolbar-button {
@@ -906,7 +920,6 @@
   }
   .fslightbox-toolbar-button { cursor: pointer !important; }
 
-  /* Gaya Modal Info (sama seperti di projects.html) */
   .modal-overlay-home {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -948,7 +961,6 @@
 <!-- 3. HTML Modal Info & Lightbox untuk Index -->
 <div id="projectModalHome" class="modal-overlay-home" onclick="closeModalHome(event)">
     <div class="modal-box-home" onclick="event.stopPropagation()">
-        <!-- Tombol Close Modal Info -->
         <button onclick="closeModalDirectlyHome(event)" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition-colors"><i class="fas fa-times"></i></button>
         
         <img id="modalImageHome" src="" alt="" class="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100" draggable="false">
@@ -957,22 +969,260 @@
         <p id="modalSubtitleHome" class="text-xs text-gray-400 mb-3 font-medium"></p>
         <div id="modalDescHome" class="text-sm text-gray-600 leading-relaxed mb-6"></div>
         <a id="modalLinkHome" href="#" target="_blank" class="inline-flex items-center gap-2 bg-yellow text-navy font-bold px-6 py-3 rounded-full hover:shadow-lg transition-all">
-            <i class="fas fa-download"></i> Lihat / Unduh Project
+            <i class="fas fa-download"></i> <span data-i18n="modal_btn">Lihat / Unduh Project</span>
         </a>
     </div>
 </div>
 
-<!-- 4. Script Logic untuk Index -->
+<!-- 4. Script Logic untuk Index (Translation) -->
 <script>
-    // Inisialisasi Lightbox saat halaman dimuat
-    document.addEventListener("DOMContentLoaded", function() {
+    // Inisialisasi Lightbox — dipanggil di 2 event sekaligus (DOMContentLoaded & load)
+    // supaya lebih kuat terhadap masalah timing, sama seperti di projects.html
+    function initHomeLightbox() {
         if (typeof refreshFsLightbox !== 'undefined') {
-            refreshFsLightbox();
+            try { refreshFsLightbox(); } catch (e) { console.error('fslightbox init error:', e); }
+        } else {
+            console.warn('refreshFsLightbox tidak terdefinisi — cek apakah asset/js/fslightbox.js berhasil dimuat.');
         }
-    });
+    }
+    document.addEventListener("DOMContentLoaded", initHomeLightbox);
+    window.addEventListener("load", initHomeLightbox);
+
+    // Catatan: Dark mode toggle SUDAH ditangani oleh script.js
+    // (event listener pada #themeToggle). Jangan duplikasi di sini,
+    // karena dua listener pada tombol yang sama akan saling
+    // membatalkan setiap klik.
 
     // ============================================
-    // DATA PROYEK UNTUK INDEX (HANYA 3 BIJI: Angkotin, Shoezy, Bogarasa)
+    // LANGUAGE TRANSLATION LOGIC UNTUK INDEX
+    // ============================================
+    (function() {
+        // Dictionary / Kamus Bahasa (Sama persis dengan projects.html)
+        const translations = {
+            'id': {
+                // Global
+                'loading_text': 'Memuat Portofolio...',
+                'nav_home': 'Home',
+                'nav_services': 'Services',
+                'nav_about': 'About',
+                'nav_skills': 'Skills',
+                'nav_portfolio': 'Portfolio',
+                'nav_achievement': 'Achievement',
+                'nav_contact': 'Contact',
+                'nav_blog': 'Blog',
+                'nav_resume': 'Resume',
+                'modal_btn': 'Lihat / Unduh Project',
+
+                // Hero
+                'hero_greeting': 'Hallo, Semua!',
+                'hero_i_am': 'Saya',
+                'hero_title': 'Software &amp; Web Developer.',
+                'hero_desc': 'Mahasiswa Sistem Informasi di Universitas Bina Sarana Informatika (IPK 3.93/4.00) yang membangun aplikasi web dengan Laravel dan aplikasi mobile dengan Flutter. Sebelum serius di dunia coding, sudah lebih dulu 3+ tahun berkecimpung sebagai desainer grafis dan kontributor Adobe Stock &amp; Shutterstock dengan lebih dari 30.000 karya lolos kurasi.',
+                'hero_exp_years': 'Tahun Pengalaman',
+                'hero_assets': 'Aset Digital Terkurasi',
+                'hero_projects': 'Proyek Dirilis',
+                'hero_btn_cv': 'Lihat CV Saya',
+                'hero_btn_contact': 'Hubungi Saya',
+
+                // Services
+                'services_label': 'Services',
+                'services_title_1': 'Layanan',
+                'services_title_2': 'yang Saya Tawarkan',
+                'services_desc': 'Berbagai layanan pengembangan software dan desain yang dapat membantu mewujudkan ide digital Anda',
+                'service_web_title': 'Web Development',
+                'service_web_desc': 'Membangun aplikasi web dari awal sampai jadi dengan Laravel, MySQL, dan REST API yang aman dan scalable.',
+                'service_mobile_title': 'Mobile Development',
+                'service_mobile_desc': 'Mengembangkan aplikasi Android dengan Flutter, dari UI/UX sampai fitur intinya berjalan optimal.',
+                'service_design_title': 'Graphic Design',
+                'service_design_desc': '3+ tahun mengerjakan branding, ilustrasi, dan aset digital untuk klien dan platform stock.',
+                'service_db_title': 'Database &amp; BI',
+                'service_db_desc': 'Pemodelan basis data (ERD, LRS) serta dashboard analitik dengan Power BI.',
+
+                // About
+                'about_label': 'About Me',
+                'about_question': 'Siapa itu',
+                'about_desc_1': 'Mahasiswa Sistem Informasi semester 5 di Universitas Bina Sarana Informatika dengan IPK 3.93/4.00. Terbiasa membangun aplikasi dari nol sampai jadi — mulai dari web dengan Laravel sampai mobile dengan Flutter.',
+                'about_desc_2': 'Sebelum serius di dunia coding, lebih dulu 3 tahun berkecimpung sebagai desainer grafis dan kontributor Adobe Stock &amp; Shutterstock, jadi terbiasa kerja rapi dengan tenggat yang ketat.',
+                'about_stat_stock': 'Karya Stock',
+                'about_stat_ipk': 'IPK / 4.00',
+                'about_stat_years': 'Tahun',
+                'about_btn_cv': 'Download CV Saya',
+
+                // Skills
+                'skills_label': 'Keahlian Teknis',
+                'skills_and': '&amp; Tools',
+                'skills_desc': 'Teknologi, framework, dan tools yang saya kuasai untuk membangun solusi digital',
+                'skill_lang_title': 'Bahasa Pemrograman',
+                'skill_fw_title': 'Framework &amp; Library',
+                'skill_db_title': 'Basis Data',
+                'skill_tools_title': 'Tools &amp; Platform',
+                'skill_model_title': 'Pemodelan &amp; Metodologi',
+                'skill_multimedia_title': 'Data, BI &amp; Multimedia',
+
+                // Portfolio Cards (Only 3 projects shown)
+                'portfolio_label': 'Portfolio',
+                'portfolio_title_1': 'Proyek',
+                'portfolio_title_2': 'Terbaru Saya',
+                'portfolio_desc': 'Beberapa proyek yang telah saya kerjakan dan banggakan',
+                'portfolio_btn': 'Lihat Semua Proyek',
+                'card_angkotin_desc': 'Aplikasi Android berbasis OOP di Dart yang menyediakan info rute angkutan kota di Bogor.',
+                'card_shoezy_desc': 'Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.',
+                'card_bogarasa_desc': 'E-commerce bakery dengan katalog, keranjang, checkout, dan integrasi payment Midtrans yang akurat 100%.',
+
+                // Achievement
+                'achievement_label': 'Achievement',
+                'achievement_title_1': 'Pencapaian',
+                'achievement_title_2': 'yang Saya Peroleh',
+                'achievement_desc': 'Perjalanan dan pencapaian yang telah saya raih selama berkarya',
+                'ach_bnsp_title': 'Sertifikasi BNSP — Database Administrator',
+                'ach_bnsp_desc': 'Melalui LSP BSI, 2024',
+                'ach_tuk_title': 'Junior Graphic Designer — TuK Indonesia',
+                'ach_tuk_desc': 'Jakarta Selatan, Apr–Jul 2022',
+                'ach_pbi_title': 'Trainer Power BI — SMK Pembangunan',
+                'ach_pbi_desc': 'Melatih 34 siswa bersama tim 10 orang',
+                'ach_kpps_title': 'Anggota KPPS KPU RI',
+                'ach_kpps_desc': 'Input &amp; rekapitulasi suara Pemilu 2024 lewat Sirekap',
+                'ach_mn_title': 'Pendiri MN Studio\'s',
+                'ach_mn_desc': 'Studio kreatif independen bidang desain & produksi visual',
+                'ach_stock_title': 'Kontributor Adobe Stock &amp; Shutterstock',
+                'ach_stock_desc': '30.000+ aset vektor & animasi lolos kurasi sejak 2024',
+
+                // Contact
+                'contact_title': 'Punya proyek, ide, atau peluang magang?',
+                'contact_desc': 'Saya terbuka untuk berdiskusi dan bekerja sama. Jangan ragu untuk menghubungi!',
+                'form_name': 'Nama Lengkap',
+                'form_email': 'Email',
+                'form_subject': 'Subjek',
+                'form_message': 'Pesan',
+                'form_btn': 'Kirim Pesan'
+            },
+            'en': {
+                // Global
+                'loading_text': 'Loading Portfolio...',
+                'nav_home': 'Home',
+                'nav_services': 'Services',
+                'nav_about': 'About',
+                'nav_skills': 'Skills',
+                'nav_portfolio': 'Portfolio',
+                'nav_achievement': 'Achievement',
+                'nav_contact': 'Contact',
+                'nav_blog': 'Blog',
+                'nav_resume': 'Resume',
+                'modal_btn': 'View / Download Project',
+
+                // Hero
+                'hero_greeting': 'Hello, Everyone!',
+                'hero_i_am': 'I am',
+                'hero_title': 'Software &amp; Web Developer.',
+                'hero_desc': 'Information Systems student at Bina Sarana Informatika University (GPA 3.93/4.00) building web applications with Laravel and mobile apps with Flutter. Before focusing on coding, spent 3+ years as a graphic designer and contributor to Adobe Stock &amp; Shutterstock with over 30,000 curated works.',
+                'hero_exp_years': 'Years Experience',
+                'hero_assets': 'Curated Digital Assets',
+                'hero_projects': 'Projects Released',
+                'hero_btn_cv': 'View My CV',
+                'hero_btn_contact': 'Contact Me',
+
+                // Services
+                'services_label': 'Services',
+                'services_title_1': 'Services',
+                'services_title_2': 'I Offer',
+                'services_desc': 'Various software development and design services to help realize your digital ideas',
+                'service_web_title': 'Web Development',
+                'service_web_desc': 'Building web applications from scratch with Laravel, MySQL, and secure, scalable REST APIs.',
+                'service_mobile_title': 'Mobile Development',
+                'service_mobile_desc': 'Developing Android applications with Flutter, from UI/UX to optimal core features.',
+                'service_design_title': 'Graphic Design',
+                'service_design_desc': '3+ years working on branding, illustrations, and digital assets for clients and stock platforms.',
+                'service_db_title': 'Database &amp; BI',
+                'service_db_desc': 'Database modeling (ERD, LRS) and analytical dashboards with Power BI.',
+
+                // About
+                'about_label': 'About Me',
+                'about_question': 'Who is',
+                'about_desc_1': 'Information Systems student in semester 5 at Bina Sarana Informatika University with a GPA of 3.93/4.00. Accustomed to building applications from scratch — from web with Laravel to mobile with Flutter.',
+                'about_desc_2': 'Before diving deep into coding, spent 3 years as a graphic designer and contributor to Adobe Stock &amp; Shutterstock, accustomed to working neatly with tight deadlines.',
+                'about_stat_stock': 'Stock Works',
+                'about_stat_ipk': 'GPA / 4.00',
+                'about_stat_years': 'Years',
+                'about_btn_cv': 'Download My CV',
+
+                // Skills
+                'skills_label': 'Technical Skills',
+                'skills_and': '&amp; Tools',
+                'skills_desc': 'Technologies, frameworks, and tools I master to build digital solutions',
+                'skill_lang_title': 'Programming Languages',
+                'skill_fw_title': 'Framework &amp; Library',
+                'skill_db_title': 'Database',
+                'skill_tools_title': 'Tools &amp; Platform',
+                'skill_model_title': 'Modeling &amp; Methodology',
+                'skill_multimedia_title': 'Data, BI &amp; Multimedia',
+
+                // Portfolio Cards (Only 3 projects shown)
+                'portfolio_label': 'Portfolio',
+                'portfolio_title_1': 'My',
+                'portfolio_title_2': 'Recent Projects',
+                'portfolio_desc': 'Some projects I have worked on and am proud of',
+                'portfolio_btn': 'View All Projects',
+                'card_angkotin_desc': 'OOP-based Android app providing public transport route information in Bogor.',
+                'card_shoezy_desc': 'OOP-based Android application in Dart functioning as a shoe e-commerce platform.',
+                'card_bogarasa_desc': 'E-commerce bakery with catalog, cart, checkout, and 100% accurate Midtrans payment integration.',
+
+                // Achievement
+                'achievement_label': 'Achievement',
+                'achievement_title_1': 'Achievements',
+                'achievement_title_2': 'I Have Gained',
+                'achievement_desc': 'The journey and achievements I have reached during my work',
+                'ach_bnsp_title': 'BNSP Certification — Database Administrator',
+                'ach_bnsp_desc': 'Through LSP BSI, 2024',
+                'ach_tuk_title': 'Junior Graphic Designer — TuK Indonesia',
+                'ach_tuk_desc': 'South Jakarta, Apr–Jul 2022',
+                'ach_pbi_title': 'Power BI Trainer — SMK Pembangunan',
+                'ach_pbi_desc': 'Trained 34 students with a team of 10 people',
+                'ach_kpps_title': 'Member of KPPS KPU RI',
+                'ach_kpps_desc': 'Input &amp; recapitulation of 2024 Election votes via Sirekap',
+                'ach_mn_title': 'Founder of MN Studio\'s',
+                'ach_mn_desc': 'An independent creative studio in design & visual production',
+                'ach_stock_title': 'Contributor to Adobe Stock &amp; Shutterstock',
+                'ach_stock_desc': '30,000+ vector & animation assets curated since 2024'
+            }
+        };
+
+        // Ambil bahasa dari LocalStorage atau default 'id'
+        let currentLang = localStorage.getItem('lang') || 'id';
+        const langToggle = document.getElementById('langToggleIndex');
+        const langText = document.getElementById('langTextIndex');
+
+        // Fungsi untuk menerapkan bahasa
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            langText.innerText = lang.toUpperCase();
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName.toLowerCase() === 'li') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.innerText = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        // Event listener tombol ganti bahasa
+        if (langToggle) {
+            langToggle.addEventListener('click', function() {
+                const newLang = currentLang === 'id' ? 'en' : 'id';
+                applyLanguage(newLang);
+            });
+        }
+
+        // Terapkan bahasa yang tersimpan saat halaman dimuat
+        applyLanguage(currentLang);
+    })();
+
+    // ============================================
+    // DATA PROYEK UNTUK INDEX (3 BIJI)
     // ============================================
     const projectDataHome = {
         'angkotin': { 
@@ -1055,10 +1305,8 @@
             }
         }
     });
-</script>
 
-<!-- LOADING SCREEN HILANG -->
-<script>
+    // LOADING SCREEN HILANG
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
             const loadingScreen = document.getElementById('loading-screen');
@@ -1071,6 +1319,5 @@
         }, 1500);
     });
 </script>
-
 </body>
 </html>
