@@ -276,27 +276,34 @@
     </div>
   </div>
 
-  <!-- Marquee Section -->
-  <div class="relative w-full mt-20 overflow-hidden">
-    <div class="bg-navy -rotate-[1.4deg] origin-bottom h-14 w-[120%] absolute -left-10 translate-y-1 z-0"></div>
-    <div class="bg-gradient-to-r from-yellow to-yellow-dark py-5 relative z-10 overflow-hidden whitespace-nowrap shadow-lg">
-      <div class="marquee-track">
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-bolt"></i> Laravel Development</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-mobile-screen-button"></i> Flutter Mobile Apps</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-laptop-code"></i> Fullstack Developer</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-palette"></i> UI/UX Design</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-pen-nib"></i> Graphic Design</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-puzzle-piece"></i> Problem Solving</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-bolt"></i> Laravel Development</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-mobile-screen-button"></i> Flutter Mobile Apps</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-laptop-code"></i> Fullstack Developer</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-palette"></i> UI/UX Design</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-pen-nib"></i> Graphic Design</span>
-        <span class="mx-10 text-white font-semibold text-lg tracking-widest flex items-center gap-3"><i class="fas fa-puzzle-piece"></i> Problem Solving</span>
+    <!-- Marquee Section -->
+  <div class="relative w-full mt-20">
+    
+    <!-- BARIS BAWAH: NAVY (Miring ke kanan) -->
+    <div class="w-full bg-navy h-12 transform -skew-x-6 mt-[-30px] z-0"></div>
+    
+    <!-- BARIS ATAS: KUNING + TEKS (Berjalan di atasnya, tetapi tidak saling menutupi) -->
+    <div class="bg-gradient-to-r from-yellow to-yellow-dark py-5 relative z-10 overflow-hidden whitespace-nowrap shadow-lg mt-[-24px]">
+      <div class="marquee-track flex items-center gap-12 w-max">
+        
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-bolt text-xl"></i> Laravel Development</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-mobile-screen-button text-xl"></i> Flutter Mobile Apps</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-laptop-code text-xl"></i> Fullstack Developer</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-palette text-xl"></i> UI/UX Design</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-pen-nib text-xl"></i> Graphic Design</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-puzzle-piece text-xl"></i> Problem Solving</span>
+        
+        <!-- ULANGI UNTUK INFINITE LOOP -->
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-bolt text-xl"></i> Laravel Development</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-mobile-screen-button text-xl"></i> Flutter Mobile Apps</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-laptop-code text-xl"></i> Fullstack Developer</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-palette text-xl"></i> UI/UX Design</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-pen-nib text-xl"></i> Graphic Design</span>
+        <span class="text-white font-bold text-lg tracking-wide flex items-center gap-3"><i class="fas fa-puzzle-piece text-xl"></i> Problem Solving</span>
+
       </div>
     </div>
   </div>
-</section>
 
 <!-- SERVICES -->
 <section id="services" class="bg-white py-24">
@@ -632,59 +639,78 @@
 
     <div class="grid md:grid-cols-3 gap-8">
       
+      <!-- Kartu 1: Bogarasa -->
       <div class="reveal reveal-delay-1 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
-        <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
-          <img src="asset/Web_Bogarasa.jpg" alt="Bogarasa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
-        </div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Laravel · MySQL · Midtrans</span>
-          <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Bogarasa</h3>
-        <p class="text-sm text-gray-600 leading-relaxed mb-3">E-commerce bakery dengan katalog, keranjang, checkout, dan integrasi payment Midtrans yang akurat 100%.</p>
-        <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
-          <span>#E-Commerce</span>
-          <span>#Payment Gateway</span>
-          <span>#Fullstack</span>
-        </div>
+          <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <!-- KLIK GAMBAR -> FULLSCREEN LIGHTBOX -->
+              <a href="asset/Web_Bogarasa.jpg" data-fslightbox="index-gallery" data-title="Bogarasa" class="block w-full h-full" onclick="event.stopPropagation()">
+                  <img src="asset/Web_Bogarasa.jpg" alt="Bogarasa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </a>
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          </div>
+          
+          <!-- KLIK TEKS -> MODAL INFO PROJECT -->
+          <div onclick="openModalHome('bogarasa')" class="cursor-pointer">
+              <div class="flex items-center justify-between mb-2">
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Laravel · MySQL · Midtrans</span>
+                  <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Bogarasa</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">E-commerce bakery dengan katalog, keranjang, checkout, dan integrasi payment Midtrans yang akurat 100%.</p>
+              <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+                  <span>#E-Commerce</span>
+                  <span>#Payment Gateway</span>
+                  <span>#Fullstack</span>
+              </div>
+          </div>
       </div>
 
+      <!-- Kartu 2: Santri TPQ Pro -->
       <div class="reveal reveal-delay-2 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
-        <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
-          <img src="asset/Santri TPQ Pro.png" alt="Santri TPQ Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
-        </div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Dart · OOP</span>
-          <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Santri TPQ Pro</h3>
-        <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi Android kelompok untuk data santri, presensi, e-commerce sepatu, dan info rute angkutan kota.</p>
-        <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
-          <span>#Mobile App</span>
-          <span>#Flutter</span>
-          <span>#Team Project</span>
-        </div>
+          <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <a href="asset/Santri TPQ Pro.png" data-fslightbox="index-gallery" data-title="Santri TPQ Pro" class="block w-full h-full" onclick="event.stopPropagation()">
+                  <img src="asset/Santri TPQ Pro.png" alt="Santri TPQ Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </a>
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          </div>
+          <div onclick="openModalHome('santri')" class="cursor-pointer">
+              <div class="flex items-center justify-between mb-2">
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Dart · OOP</span>
+                  <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Santri TPQ Pro</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi Android kelompok untuk data santri, presensi, e-commerce sepatu, dan info rute angkutan kota.</p>
+              <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+                  <span>#Mobile App</span>
+                  <span>#Flutter</span>
+                  <span>#Team Project</span>
+              </div>
+          </div>
       </div>
 
+      <!-- Kartu 3: Motor Oil -->
       <div class="reveal reveal-delay-3 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
-        <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
-          <img src="asset/Motor Oil Tracker.png" alt="Motor Oil Tracker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
-        </div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Solo Project</span>
-          <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Motor Oil Tracker &amp; Buildwise</h3>
-        <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi pencatat jadwal ganti oli motor, dan manajemen proyek konstruksi berbantuan AI.</p>
-        <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
-          <span>#Personal Project</span>
-          <span>#AI Integration</span>
-          <span>#Mobile</span>
-        </div>
+          <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <a href="asset/Motor Oil Tracker.png" data-fslightbox="index-gallery" data-title="Motor Oil Tracker" class="block w-full h-full" onclick="event.stopPropagation()">
+                  <img src="asset/Motor Oil Tracker.png" alt="Motor Oil Tracker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </a>
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          </div>
+          <div onclick="openModalHome('motor')" class="cursor-pointer">
+              <div class="flex items-center justify-between mb-2">
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Solo Project</span>
+                  <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Motor Oil Tracker &amp; Buildwise</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi pencatat jadwal ganti oli motor, dan manajemen proyek konstruksi berbantuan AI.</p>
+              <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+                  <span>#Personal Project</span>
+                  <span>#AI Integration</span>
+                  <span>#Mobile</span>
+              </div>
+          </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -782,32 +808,37 @@
     <h2 class="reveal text-4xl sm:text-5xl font-extrabold mb-6">Punya proyek, ide, atau peluang magang?</h2>
     <p class="reveal text-lg text-gray-600 mb-10">Saya terbuka untuk <span class="text-yellow font-semibold">berdiskusi dan bekerja sama.</span> Jangan ragu untuk menghubungi!</p>
 
-    <form class="reveal reveal-delay-1 contact-form flex flex-col gap-4 border-2 border-gray-200 rounded-2xl px-6 py-6 shadow-lg bg-white transition-all" 
+    <!-- FORM KONTAK: versi label-di-atas (stacked), tema tetap kuning/navy -->
+    <form class="reveal reveal-delay-1 contact-form flex flex-col gap-5 border-2 border-gray-200 rounded-2xl px-6 sm:px-8 py-8 shadow-lg bg-white transition-all text-left" 
           action="https://formspree.io/f/mojgovjg" 
           method="POST">
-      
-      <div class="flex flex-col sm:flex-row gap-3">
-        <div class="flex-1 flex items-center gap-3 border-b border-gray-200 pb-2">
-          <i class="fas fa-user text-yellow"></i>
-          <input type="text" name="name" placeholder="Nama Lengkap *" required class="w-full outline-none bg-transparent text-sm">
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="flex flex-col gap-2">
+          <label for="contact-name" class="text-sm font-semibold text-navy">Nama Lengkap <span class="text-yellow">*</span></label>
+          <input type="text" id="contact-name" name="name" required placeholder="Tulis nama lengkap Anda"
+                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 transition-all">
         </div>
-        <div class="flex-1 flex items-center gap-3 border-b border-gray-200 pb-2">
-          <i class="fas fa-envelope text-yellow"></i>
-          <input type="email" name="email" placeholder="Email *" required class="w-full outline-none bg-transparent text-sm">
+        <div class="flex flex-col gap-2">
+          <label for="contact-email" class="text-sm font-semibold text-navy">Email <span class="text-yellow">*</span></label>
+          <input type="email" id="contact-email" name="email" required placeholder="nama@email.com"
+                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 transition-all">
         </div>
       </div>
 
-      <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
-        <i class="fas fa-heading text-yellow"></i>
-        <input type="text" name="subject" placeholder="Subjek" class="w-full outline-none bg-transparent text-sm">
+      <div class="flex flex-col gap-2">
+        <label for="contact-subject" class="text-sm font-semibold text-navy">Subjek</label>
+        <input type="text" id="contact-subject" name="subject" placeholder="Contoh: Peluang Magang / Kolaborasi Proyek"
+               class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 transition-all">
       </div>
 
-      <div class="flex items-start gap-3 border-b border-gray-200 pb-2">
-        <i class="fas fa-comment-dots text-yellow mt-2"></i>
-        <textarea name="message" placeholder="Pesan *" required class="w-full outline-none bg-transparent text-sm resize-none min-h-[100px] py-2"></textarea>
+      <div class="flex flex-col gap-2">
+        <label for="contact-message" class="text-sm font-semibold text-navy">Pesan <span class="text-yellow">*</span></label>
+        <textarea id="contact-message" name="message" required placeholder="Tulis pesan Anda di sini..."
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-mist text-sm text-navy placeholder:text-gray-400 outline-none focus:border-yellow focus:ring-2 focus:ring-yellow/20 resize-none min-h-[140px] transition-all"></textarea>
       </div>
       
-      <button type="submit" class="w-full sm:w-auto self-end bg-gradient-to-r from-yellow to-yellow-dark text-navy font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all hover:scale-105">Kirim Pesan</button>
+      <button type="submit" class="w-full sm:w-auto sm:self-end bg-gradient-to-r from-yellow to-yellow-dark text-navy font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all hover:scale-105">Kirim Pesan</button>
     </form>
 
     <div class="reveal reveal-delay-2 flex justify-center flex-wrap gap-6 mt-12">
@@ -859,7 +890,208 @@
 
 <script src="script.js"></script>
 
-<!-- JAVASCRIPT UNTUK MENGHILANGKAN LOADING SCREEN -->
+<!-- ========================================== -->
+<!-- TAMBAHAN: FSLIGHTBOX & MODAL UNTUK INDEX.HTML -->
+<!-- ========================================== -->
+
+<!-- 1. Library FsLightbox (untuk preview gambar fullscreen dengan tombol Close) -->
+<script src="asset/js/fslightbox.js"></script>
+
+<!-- 2. CSS Tambahan untuk Modal Info & Perbaikan Lightbox -->
+<style>
+  /* Override agar tombol Lightbox terlihat (Tailwind mereset style button) */
+  .fslightbox-container button,
+  .fslightbox-container svg,
+  .fslightbox-toolbar-button {
+    all: revert;
+    box-sizing: border-box;
+  }
+  .fslightbox-toolbar-button { cursor: pointer !important; }
+
+  /* Gaya Modal Info (sama seperti di projects.html) */
+  .modal-overlay-home {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .modal-overlay-home.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-box-home {
+    background: #fff;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .modal-overlay-home.active .modal-box-home {
+    transform: scale(1);
+  }
+  .modal-box-home::-webkit-scrollbar { width: 6px; }
+  .modal-box-home::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+  .modal-box-home::-webkit-scrollbar-thumb { background: #F5A623; border-radius: 10px; }
+</style>
+
+<!-- 3. HTML Modal Info & Lightbox untuk Index -->
+<div id="projectModalHome" class="modal-overlay-home" onclick="closeModalHome(event)">
+    <div class="modal-box-home" onclick="event.stopPropagation()">
+        <!-- Tombol Close Modal Info -->
+        <button onclick="closeModalDirectlyHome(event)" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition-colors"><i class="fas fa-times"></i></button>
+        
+        <img id="modalImageHome" src="" alt="" class="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100" draggable="false">
+        <div id="modalTagsHome" class="flex flex-wrap gap-2 mb-2"></div>
+        <h3 id="modalTitleHome" class="text-2xl font-bold text-navy mb-1"></h3>
+        <p id="modalSubtitleHome" class="text-xs text-gray-400 mb-3 font-medium"></p>
+        <div id="modalDescHome" class="text-sm text-gray-600 leading-relaxed mb-6"></div>
+        <a id="modalLinkHome" href="#" target="_blank" class="inline-flex items-center gap-2 bg-yellow text-navy font-bold px-6 py-3 rounded-full hover:shadow-lg transition-all">
+            <i class="fas fa-download"></i> Lihat / Unduh Project
+        </a>
+    </div>
+</div>
+
+<!-- 4. Script Logic untuk Index -->
+<script>
+    // Inisialisasi Lightbox saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof refreshFsLightbox !== 'undefined') {
+            refreshFsLightbox();
+        }
+    });
+
+    // ============================================
+    // DATA PROYEK UNTUK INDEX (SALINAN DARI PROJECTS.HTML)
+    // ============================================
+    const projectDataHome = {
+        'bogarasa': { 
+            img: 'asset/Web_Bogarasa.jpg', 
+            tags: ['Laravel', 'MySQL', 'Midtrans'], 
+            title: 'Bogarasa', 
+            subtitle: 'E-commerce Bakery/Makanan · Proyek Kelompok',
+            desc: 'Proyek Kelompok pada mata kuliah Perancangan & Pemodelan SI, Web Programming, Software Quality Assurance, dan Manajemen Proyek SI.<br><br><ul class="list-disc pl-4 space-y-1.5"><li>Membangun modul katalog, keranjang, checkout, manajemen pesanan MVC Laravel, menerapkan RBAC untuk admin & pelanggan.</li><li>Integrasi payment Midtrans via REST API, perbaikan bug transaksi hingga 100% akurat, automated testing Selenium, dan 4 dokumen UML.</li></ul>',
+            link: 'https://drive.google.com/your-bogarasa-link-here'
+        },
+        'santri': { 
+            img: 'asset/Santri TPQ Pro.png', 
+            tags: ['Flutter', 'Dart', 'OOP'], 
+            title: 'Santri TPQ Pro', 
+            subtitle: 'Aplikasi Mobile · Mata Kuliah Pemrograman Mobile',
+            desc: 'Aplikasi Android berbasis OOP di Dart untuk mengelola data santri, penilaian, dan presensi.',
+            link: 'https://drive.google.com/your-santri-link-here'
+        },
+        'shoezy': { 
+            img: 'asset/Shoezy.png', 
+            tags: ['Flutter', 'Dart', 'OOP'], 
+            title: 'Shoezy', 
+            subtitle: 'Aplikasi Mobile · Mata Kuliah Pemrograman Mobile',
+            desc: 'Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.',
+            link: 'https://drive.google.com/your-shoezy-link-here'
+        },
+        'angkotin': { 
+            img: 'asset/Angkotin.png', 
+            tags: ['Flutter', 'Dart', 'OOP'], 
+            title: 'Angkotin Bogor', 
+            subtitle: 'Aplikasi Mobile · Mata Kuliah Pemrograman Mobile',
+            desc: 'Aplikasi Android berbasis OOP di Dart yang menyediakan info rute angkutan kota di Bogor.',
+            link: 'https://drive.google.com/your-angkotin-link-here'
+        },
+        'motor': { 
+            img: 'asset/Motor Oil Tracker.png', 
+            tags: ['Flutter', 'AI'], 
+            title: 'Motor Oil Tracker', 
+            subtitle: 'Proyek Individu',
+            desc: 'Aplikasi mobile untuk mencatat jadwal dan riwayat ganti oli secara mandiri. Dibangun dari riset kebutuhan, desain UI/UX, hingga seluruh fitur intinya.',
+            link: 'https://drive.google.com/your-motor-link-here'
+        },
+        'buildwise': { 
+            img: 'asset/BuildWise.png', 
+            tags: ['Flutter', 'AI'], 
+            title: 'BuildWise', 
+            subtitle: 'Proyek Individu',
+            desc: '<ul class="list-disc pl-4 space-y-1"><li>Aplikasi manajemen anggaran proyek konstruksi dengan modul AI.</li><li>Skor kesehatan anggaran, prediksi pengeluaran bulan depan berbasis neural network.</li><li>Breakdown kategori pengeluaran terbesar, deteksi pola musiman, dan rekomendasi otomatis.</li></ul>',
+            link: 'https://drive.google.com/your-buildwise-link-here'
+        },
+        'archibuild': { 
+            img: 'asset/ArchiBuild.png', 
+            tags: ['Unity 3D', 'AR'], 
+            title: 'Archibuild Apps', 
+            subtitle: 'Pengenalan Objek Arsitektur Berbasis AR',
+            desc: '<ul class="list-disc pl-4 space-y-1.5"><li>Merancang prototipe aplikasi, UI/UX, dan aset digitalnya.</li><li>Mengembangkan fitur augmented reality menggunakan Unity 3D.</li></ul>',
+            link: 'https://drive.google.com/your-archibuild-link-here'
+        }
+    };
+
+    // ============================================
+    // LOGIKA MODAL UNTUK INDEX
+    // ============================================
+    function openModalHome(projectId) {
+        const data = projectDataHome[projectId];
+        if(!data) return;
+        
+        document.getElementById('modalImageHome').src = data.img;
+        document.getElementById('modalTitleHome').innerText = data.title;
+        document.getElementById('modalSubtitleHome').innerText = data.subtitle;
+        document.getElementById('modalDescHome').innerHTML = data.desc;
+        document.getElementById('modalLinkHome').href = data.link;
+        
+        const tagsContainer = document.getElementById('modalTagsHome');
+        tagsContainer.innerHTML = '';
+        data.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'text-[10px] font-bold bg-yellow text-white px-2 py-1 rounded-full';
+            span.innerText = tag;
+            tagsContainer.appendChild(span);
+        });
+
+        document.getElementById('projectModalHome').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalHome(event) {
+        if (event.target === event.currentTarget) {
+            const modal = event.currentTarget;
+            if (modal && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }
+
+    function closeModalDirectlyHome(event) {
+        event.stopPropagation();
+        const modalOverlay = event.target.closest('.modal-overlay-home');
+        if (modalOverlay && modalOverlay.classList.contains('active')) {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const activeModal = document.querySelector('.modal-overlay-home.active');
+            if (activeModal) {
+                activeModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    });
+</script>
+
+<!-- LOADING SCREEN HILANG -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
