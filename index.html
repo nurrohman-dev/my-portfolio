@@ -276,7 +276,7 @@
     </div>
   </div>
 
-    <!-- Marquee Section -->
+  <!-- Marquee Section -->
   <div class="relative w-full mt-20">
     
     <!-- BARIS BAWAH: NAVY (Miring ke kanan) -->
@@ -304,6 +304,7 @@
       </div>
     </div>
   </div>
+</section>
 
 <!-- SERVICES -->
 <section id="services" class="bg-white py-24">
@@ -642,14 +643,12 @@
       <!-- Kartu 1: Bogarasa -->
       <div class="reveal reveal-delay-1 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
           <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
-              <!-- KLIK GAMBAR -> FULLSCREEN LIGHTBOX -->
               <a href="asset/Web_Bogarasa.jpg" data-fslightbox="index-gallery" data-title="Bogarasa" class="block w-full h-full" onclick="event.stopPropagation()">
                   <img src="asset/Web_Bogarasa.jpg" alt="Bogarasa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
               </a>
               <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
           </div>
           
-          <!-- KLIK TEKS -> MODAL INFO PROJECT -->
           <div onclick="openModalHome('bogarasa')" class="cursor-pointer">
               <div class="flex items-center justify-between mb-2">
                   <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Laravel · MySQL · Midtrans</span>
@@ -688,7 +687,7 @@
           </div>
       </div>
 
-      <!-- Kartu 3: Motor Oil -->
+      <!-- Kartu 3: Motor Oil Tracker -->
       <div class="reveal reveal-delay-3 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
           <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
               <a href="asset/Motor Oil Tracker.png" data-fslightbox="index-gallery" data-title="Motor Oil Tracker" class="block w-full h-full" onclick="event.stopPropagation()">
@@ -698,15 +697,107 @@
           </div>
           <div onclick="openModalHome('motor')" class="cursor-pointer">
               <div class="flex items-center justify-between mb-2">
-                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Solo Project</span>
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · AI · Solo Project</span>
                   <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
               </div>
-              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Motor Oil Tracker &amp; Buildwise</h3>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Motor Oil Tracker</h3>
               <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi pencatat jadwal ganti oli motor, dan manajemen proyek konstruksi berbantuan AI.</p>
               <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
                   <span>#Personal Project</span>
                   <span>#AI Integration</span>
                   <span>#Mobile</span>
+              </div>
+          </div>
+      </div>
+
+      <!-- Kartu 4: Shoezy -->
+      <div class="reveal reveal-delay-1 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
+          <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <a href="asset/Shoezy.png" data-fslightbox="index-gallery" data-title="Shoezy" class="block w-full h-full" onclick="event.stopPropagation()">
+                  <img src="asset/Shoezy.png" alt="Shoezy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </a>
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          </div>
+          <div onclick="openModalHome('shoezy')" class="cursor-pointer">
+              <div class="flex items-center justify-between mb-2">
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Dart · OOP</span>
+                  <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Shoezy</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.</p>
+              <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+                  <span>#Mobile App</span>
+                  <span>#E-Commerce</span>
+                  <span>#Flutter</span>
+              </div>
+          </div>
+      </div>
+
+      <!-- Kartu 5: Angkotin Bogor -->
+      <div class="reveal reveal-delay-2 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
+          <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <a href="asset/Angkotin.png" data-fslightbox="index-gallery" data-title="Angkotin Bogor" class="block w-full h-full" onclick="event.stopPropagation()">
+                  <img src="asset/Angkotin.png" alt="Angkotin Bogor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </a>
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          </div>
+          <div onclick="openModalHome('angkotin')" class="cursor-pointer">
+              <div class="flex items-center justify-between mb-2">
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · Dart · OOP</span>
+                  <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Angkotin Bogor</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi Android berbasis OOP di Dart yang menyediakan info rute angkutan kota di Bogor.</p>
+              <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+                  <span>#Mobile App</span>
+                  <span>#Information</span>
+                  <span>#Flutter</span>
+              </div>
+          </div>
+      </div>
+
+      <!-- Kartu 6: BuildWise -->
+      <div class="reveal reveal-delay-3 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
+          <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <a href="asset/BuildWise.png" data-fslightbox="index-gallery" data-title="BuildWise" class="block w-full h-full" onclick="event.stopPropagation()">
+                  <img src="asset/BuildWise.png" alt="BuildWise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </a>
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          </div>
+          <div onclick="openModalHome('buildwise')" class="cursor-pointer">
+              <div class="flex items-center justify-between mb-2">
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Flutter · AI · Solo Project</span>
+                  <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">BuildWise</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">Aplikasi mobile berbantuan AI untuk manajemen proyek konstruksi.</p>
+              <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+                  <span>#Mobile App</span>
+                  <span>#Construction</span>
+                  <span>#AI</span>
+              </div>
+          </div>
+      </div>
+
+      <!-- Kartu 7: Archibuild Apps -->
+      <div class="reveal reveal-delay-1 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover-lift group">
+          <div class="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100">
+              <a href="asset/ArchiBuild.png" data-fslightbox="index-gallery" data-title="Archibuild Apps" class="block w-full h-full" onclick="event.stopPropagation()">
+                  <img src="asset/ArchiBuild.png" alt="Archibuild Apps" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </a>
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          </div>
+          <div onclick="openModalHome('archibuild')" class="cursor-pointer">
+              <div class="flex items-center justify-between mb-2">
+                  <span class="inline-block px-3 py-1 rounded-full bg-yellow-light text-yellow text-[10px] font-bold border border-yellow/20">Unity 3D · AR</span>
+                  <i class="fas fa-arrow-right text-gray-300 group-hover:text-yellow transition-all group-hover:translate-x-1"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-yellow transition-colors">Archibuild Apps</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">Pengenalan objek arsitektur berbasis Augmented Reality menggunakan Unity 3D.</p>
+              <div class="flex gap-3 flex-wrap text-[10px] text-gray-400 font-medium">
+                  <span>#AR</span>
+                  <span>#Unity</span>
+                  <span>#3D</span>
               </div>
           </div>
       </div>
@@ -732,7 +823,7 @@
       <div class="flex flex-col gap-4">
         
         <!-- ITEM 1: BNSP -->
-        <a href="https://drive.google.com/your-link-sertifikat-bnsp-here" target="_blank" rel="noopener" class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60 hover:border-yellow hover:bg-yellow-light group relative">
+        <a href="https://drive.google.com/file/d/1B-lCLRwCvdzvJ1yOkbANyQlKWt7_-T3h/view?usp=sharing" target="_blank" rel="noopener" class="reveal achievement-item py-5 flex items-start gap-4 px-5 rounded-xl transition-all border border-white/60 hover:border-yellow hover:bg-yellow-light group relative">
           <div class="relative flex-shrink-0">
             <div class="achievement-icon w-10 h-10 rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform"><i class="fas fa-certificate text-yellow"></i></div>
             <i class="fas fa-circle-check text-blue-500 absolute -bottom-1 -right-1 text-sm bg-white rounded-full group-hover:animate-pulse transition-all"></i>
@@ -974,7 +1065,7 @@
     });
 
     // ============================================
-    // DATA PROYEK UNTUK INDEX (SALINAN DARI PROJECTS.HTML)
+    // DATA PROYEK UNTUK INDEX (LINK SUDAH DIPERBAHARUI)
     // ============================================
     const projectDataHome = {
         'bogarasa': { 
@@ -991,7 +1082,7 @@
             title: 'Santri TPQ Pro', 
             subtitle: 'Aplikasi Mobile · Mata Kuliah Pemrograman Mobile',
             desc: 'Aplikasi Android berbasis OOP di Dart untuk mengelola data santri, penilaian, dan presensi.',
-            link: 'https://drive.google.com/your-santri-link-here'
+            link: 'https://drive.google.com/file/d/1yzEh5FFDhn-ep-XZR8z20MHZRUC14T4J/view?usp=sharing'
         },
         'shoezy': { 
             img: 'asset/Shoezy.png', 
@@ -999,7 +1090,7 @@
             title: 'Shoezy', 
             subtitle: 'Aplikasi Mobile · Mata Kuliah Pemrograman Mobile',
             desc: 'Aplikasi Android berbasis OOP di Dart yang berfungsi sebagai e-commerce sepatu.',
-            link: 'https://drive.google.com/your-shoezy-link-here'
+            link: 'https://drive.google.com/file/d/1iVXocAQ0PaWvTTqMMbqPqv4PKogA2nQC/view?usp=sharing'
         },
         'angkotin': { 
             img: 'asset/Angkotin.png', 
@@ -1007,7 +1098,7 @@
             title: 'Angkotin Bogor', 
             subtitle: 'Aplikasi Mobile · Mata Kuliah Pemrograman Mobile',
             desc: 'Aplikasi Android berbasis OOP di Dart yang menyediakan info rute angkutan kota di Bogor.',
-            link: 'https://drive.google.com/your-angkotin-link-here'
+            link: 'https://drive.google.com/file/d/1mYFf3QdNukQlRaMM2QiLanagCiSqsdTv/view?usp=sharing'
         },
         'motor': { 
             img: 'asset/Motor Oil Tracker.png', 
@@ -1015,7 +1106,7 @@
             title: 'Motor Oil Tracker', 
             subtitle: 'Proyek Individu',
             desc: 'Aplikasi mobile untuk mencatat jadwal dan riwayat ganti oli secara mandiri. Dibangun dari riset kebutuhan, desain UI/UX, hingga seluruh fitur intinya.',
-            link: 'https://drive.google.com/your-motor-link-here'
+            link: 'https://drive.google.com/file/d/1jrCEI25r51cIzdxhJMbaC1CLcrMsNkR3/view?usp=sharing'
         },
         'buildwise': { 
             img: 'asset/BuildWise.png', 
@@ -1031,7 +1122,7 @@
             title: 'Archibuild Apps', 
             subtitle: 'Pengenalan Objek Arsitektur Berbasis AR',
             desc: '<ul class="list-disc pl-4 space-y-1.5"><li>Merancang prototipe aplikasi, UI/UX, dan aset digitalnya.</li><li>Mengembangkan fitur augmented reality menggunakan Unity 3D.</li></ul>',
-            link: 'https://drive.google.com/your-archibuild-link-here'
+            link: 'https://drive.google.com/file/d/1s7OHfy7NwThwpn5nrtBXc3hhlg-fp3F6/view?usp=sharing'
         }
     };
 
