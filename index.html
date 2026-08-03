@@ -12,23 +12,23 @@
 
 <!-- Canonical -->
 <!-- GANTI URL DI BAWAH INI kalau domain Vercel kamu berbeda -->
-<link rel="canonical" href="https://muhammad-nurrohman.vercel.app/">
+<link rel="canonical" href="https://mnurrohman.vercel.app/">
 
 <!-- Open Graph / Facebook, LinkedIn, WhatsApp -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://muhammad-nurrohman.vercel.app/">
+<meta property="og:url" content="https://mnurrohman.vercel.app/">
 <meta property="og:title" content="Muhammad Nurrohman | Software & Web Developer">
 <meta property="og:description" content="Portofolio resmi Muhammad Nurrohman — Software & Web Developer spesialis Laravel, Flutter, dan Desain Grafis. 30.000+ karya digital terkurasi di Adobe Stock & Shutterstock.">
-<meta property="og:image" content="https://muhammad-nurrohman.vercel.app/asset/Profile.webp">
+<meta property="og:image" content="https://mnurrohman.vercel.app/asset/Profile.webp">
 <meta property="og:locale" content="id_ID">
 <meta property="og:site_name" content="Muhammad Nurrohman Portfolio">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://muhammad-nurrohman.vercel.app/">
+<meta name="twitter:url" content="https://mnurrohman.vercel.app/">
 <meta name="twitter:title" content="Muhammad Nurrohman | Software & Web Developer">
 <meta name="twitter:description" content="Portofolio resmi Muhammad Nurrohman — Software & Web Developer spesialis Laravel, Flutter, dan Desain Grafis.">
-<meta name="twitter:image" content="https://muhammad-nurrohman.vercel.app/asset/Profile.webp">
+<meta name="twitter:image" content="https://mnurrohman.vercel.app/asset/Profile.webp">
 
 <!-- Data Terstruktur (JSON-LD) untuk Google -->
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Muhammad Nurrohman",
-  "url": "https://muhammad-nurrohman.vercel.app/",
-  "image": "https://muhammad-nurrohman.vercel.app/asset/Profile.webp",
+  "url": "https://mnurrohman.vercel.app/",
+  "image": "https://mnurrohman.vercel.app/asset/Profile.webp",
   "jobTitle": "Software & Web Developer",
   "description": "Mahasiswa Sistem Informasi di Universitas Bina Sarana Informatika, Software & Web Developer spesialis Laravel dan Flutter, serta kontributor Adobe Stock & Shutterstock.",
   "alumniOf": {
@@ -201,6 +201,50 @@
 <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
   <i class="fas fa-arrow-up"></i>
 </button>
+
+<!-- WEATHER WIDGET -->
+<div id="weatherWidget" class="weather-widget weather-loading">
+  <button id="weatherToggle" class="weather-pill" aria-expanded="false" aria-controls="weatherPanel" aria-label="Lihat perkiraan cuaca">
+    <span id="weatherPillIcon" class="weather-pill-icon"><i class="fa-solid fa-cloud-sun" aria-hidden="true"></i></span>
+    <span id="weatherPillTemp" class="weather-pill-temp">--°</span>
+    <span class="weather-pill-chevron"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></span>
+  </button>
+
+  <div id="weatherPanel" class="weather-panel" hidden>
+    <div class="weather-panel-header">
+      <div>
+        <p class="weather-panel-label">Hari Ini</p>
+        <p id="weatherDate" class="weather-panel-date">-</p>
+      </div>
+      <button id="weatherClose" class="weather-panel-close" aria-label="Tutup panel cuaca"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <div class="weather-panel-main">
+      <div>
+        <p id="weatherTemp" class="weather-temp-big">--<span>°C</span></p>
+        <p id="weatherDesc" class="weather-desc">Memuat cuaca...</p>
+        <p id="weatherLocation" class="weather-location"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span>Mencari lokasi...</span></p>
+      </div>
+      <div id="weatherIconBig" class="weather-icon-big"><i class="fa-solid fa-cloud-sun" aria-hidden="true"></i></div>
+    </div>
+
+    <div class="weather-stats">
+      <div class="weather-stat"><i class="fa-solid fa-droplet" aria-hidden="true"></i><span class="weather-stat-label">Kelembapan</span><span id="weatherHumidity" class="weather-stat-value">--%</span></div>
+      <div class="weather-stat"><i class="fa-solid fa-wind" aria-hidden="true"></i><span class="weather-stat-label">Kecepatan</span><span id="weatherWind" class="weather-stat-value">-- Km/Jam</span></div>
+      <div class="weather-stat"><i class="fa-solid fa-compass" aria-hidden="true"></i><span class="weather-stat-label">Arah Angin</span><span id="weatherWindDir" class="weather-stat-value">--</span></div>
+    </div>
+
+    <p class="weather-hourly-label">Perkiraan Per Jam</p>
+    <div id="weatherHourly" class="weather-hourly">
+      <div class="weather-hourly-item"><span class="h-time">14:00</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">29°</span></div>
+      <div class="weather-hourly-item"><span class="h-time">15:00</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">29°</span></div>
+      <div class="weather-hourly-item"><span class="h-time">16:00</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">29°</span></div>
+      <div class="weather-hourly-item"><span class="h-time">17:00</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">29°</span></div>
+    </div>
+
+    <p class="weather-attribution">Data oleh <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></p>
+  </div>
+</div>
 
 <!-- NAVIGATION BAR -->
 <div id="navbar" class="fixed top-0 left-0 w-full z-50">
@@ -1423,6 +1467,195 @@
             fail();
         }
     }
+
+    // ============================================
+    // WEATHER WIDGET (Open-Meteo — gratis, tanpa API key)
+    // ============================================
+    (function() {
+        const widget = document.getElementById('weatherWidget');
+        const toggleBtn = document.getElementById('weatherToggle');
+        const closeBtn = document.getElementById('weatherClose');
+        const panel = document.getElementById('weatherPanel');
+        if (!widget || !toggleBtn || !panel) return;
+
+        // Fallback: Bogor, Jawa Barat (lokasi Muhammad)
+        const FALLBACK_COORDS = { lat: -6.595038, lon: 106.816635, label: 'Bogor, Indonesia' };
+
+        const WMO = {
+            0: { desc: 'Cerah', icon: 'fa-sun' },
+            1: { desc: 'Cerah Berawan', icon: 'fa-cloud-sun' },
+            2: { desc: 'Berawan Sebagian', icon: 'fa-cloud-sun' },
+            3: { desc: 'Berawan', icon: 'fa-cloud' },
+            45: { desc: 'Berkabut', icon: 'fa-smog' },
+            48: { desc: 'Kabut Beku', icon: 'fa-smog' },
+            51: { desc: 'Gerimis Ringan', icon: 'fa-cloud-rain' },
+            53: { desc: 'Gerimis', icon: 'fa-cloud-rain' },
+            55: { desc: 'Gerimis Lebat', icon: 'fa-cloud-rain' },
+            56: { desc: 'Gerimis Beku', icon: 'fa-cloud-rain' },
+            57: { desc: 'Gerimis Beku Lebat', icon: 'fa-cloud-rain' },
+            61: { desc: 'Hujan Ringan', icon: 'fa-cloud-rain' },
+            63: { desc: 'Hujan Sedang', icon: 'fa-cloud-showers-heavy' },
+            65: { desc: 'Hujan Lebat', icon: 'fa-cloud-showers-heavy' },
+            66: { desc: 'Hujan Beku Ringan', icon: 'fa-cloud-rain' },
+            67: { desc: 'Hujan Beku Lebat', icon: 'fa-cloud-showers-heavy' },
+            71: { desc: 'Salju Ringan', icon: 'fa-snowflake' },
+            73: { desc: 'Salju Sedang', icon: 'fa-snowflake' },
+            75: { desc: 'Salju Lebat', icon: 'fa-snowflake' },
+            77: { desc: 'Butiran Salju', icon: 'fa-snowflake' },
+            80: { desc: 'Hujan Rintik', icon: 'fa-cloud-rain' },
+            81: { desc: 'Hujan Rintik Sedang', icon: 'fa-cloud-showers-heavy' },
+            82: { desc: 'Hujan Rintik Deras', icon: 'fa-cloud-showers-heavy' },
+            85: { desc: 'Hujan Salju Ringan', icon: 'fa-snowflake' },
+            86: { desc: 'Hujan Salju Lebat', icon: 'fa-snowflake' },
+            95: { desc: 'Badai Petir', icon: 'fa-bolt' },
+            96: { desc: 'Badai Petir + Es', icon: 'fa-bolt' },
+            99: { desc: 'Badai Petir Hebat', icon: 'fa-bolt' }
+        };
+        function weatherInfo(code) { return WMO[code] || { desc: 'Tidak diketahui', icon: 'fa-cloud' }; }
+
+        function windDirection(deg) {
+            const dirs = ['Utara', 'Timur Laut', 'Timur', 'Tenggara', 'Selatan', 'Barat Daya', 'Barat', 'Barat Laut'];
+            return dirs[Math.round(deg / 45) % 8];
+        }
+
+        function formatDate() {
+            const d = new Date();
+            return d.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        function setIcon(el, iconClass) {
+            el.innerHTML = '<i class="fa-solid ' + iconClass + '" aria-hidden="true"></i>';
+        }
+
+        async function getLocation() {
+            if (!navigator.geolocation) return FALLBACK_COORDS;
+            try {
+                const pos = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000, maximumAge: 600000 });
+                });
+                return { lat: pos.coords.latitude, lon: pos.coords.longitude, label: null };
+            } catch (e) {
+                return FALLBACK_COORDS;
+            }
+        }
+
+        async function getLocationName(lat, lon, fallbackLabel) {
+            if (fallbackLabel) return fallbackLabel;
+            try {
+                const res = await fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + lat + '&longitude=' + lon + '&localityLanguage=id');
+                if (!res.ok) throw new Error('reverse geocode failed');
+                const data = await res.json();
+                return data.city || data.locality || data.principalSubdivision || 'Lokasi Anda';
+            } catch (e) {
+                return 'Lokasi Anda';
+            }
+        }
+
+        async function loadWeather() {
+            const dateEl = document.getElementById('weatherDate');
+            if (dateEl) dateEl.textContent = formatDate();
+
+            // Tampilkan spinner di ikon selagi memuat
+            setIcon(document.getElementById('weatherPillIcon'), 'fa-spinner fa-spin');
+            setIcon(document.getElementById('weatherIconBig'), 'fa-spinner fa-spin');
+
+            const coords = await getLocation();
+            const locationName = await getLocationName(coords.lat, coords.lon, coords.label);
+            const locEl = document.querySelector('#weatherLocation span');
+            if (locEl) locEl.textContent = locationName;
+
+            const url = 'https://api.open-meteo.com/v1/forecast?latitude=' + coords.lat + '&longitude=' + coords.lon +
+                '&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m' +
+                '&hourly=temperature_2m,weather_code' +
+                '&timezone=Asia%2FJakarta&forecast_days=1';
+
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Gagal mengambil data cuaca');
+                const data = await res.json();
+                const current = data.current;
+                const info = weatherInfo(current.weather_code);
+                const tempRounded = Math.round(current.temperature_2m);
+
+                // Pill (collapsed state)
+                const pillTemp = document.getElementById('weatherPillTemp');
+                if (pillTemp) pillTemp.textContent = tempRounded + '°';
+                setIcon(document.getElementById('weatherPillIcon'), info.icon);
+
+                // Panel (expanded state)
+                const tempBig = document.getElementById('weatherTemp');
+                if (tempBig) tempBig.innerHTML = tempRounded + '<span>°C</span>';
+                const descEl = document.getElementById('weatherDesc');
+                if (descEl) descEl.textContent = info.desc;
+                setIcon(document.getElementById('weatherIconBig'), info.icon);
+
+                const humEl = document.getElementById('weatherHumidity');
+                if (humEl) humEl.textContent = Math.round(current.relative_humidity_2m) + '%';
+                const windEl = document.getElementById('weatherWind');
+                if (windEl) windEl.textContent = current.wind_speed_10m.toFixed(1) + ' Km/Jam';
+                const windDirEl = document.getElementById('weatherWindDir');
+                if (windDirEl) windDirEl.textContent = windDirection(current.wind_direction_10m);
+
+                // Hourly forecast (6 jam ke depan dari jam sekarang)
+                const hourlyContainer = document.getElementById('weatherHourly');
+                if (hourlyContainer && data.hourly) {
+                    const nowIso = current.time;
+                    let startIdx = data.hourly.time.findIndex(t => t >= nowIso);
+                    if (startIdx === -1) startIdx = 0;
+                    const slice = [];
+                    for (let i = startIdx; i < Math.min(startIdx + 6, data.hourly.time.length); i++) {
+                        slice.push(i);
+                    }
+                    hourlyContainer.innerHTML = slice.map(i => {
+                        const t = new Date(data.hourly.time[i]);
+                        const hourLabel = t.getHours().toString().padStart(2, '0') + ':00';
+                        const hInfo = weatherInfo(data.hourly.weather_code[i]);
+                        const hTemp = Math.round(data.hourly.temperature_2m[i]);
+                        return '<div class="weather-hourly-item">' +
+                            '<span class="h-time">' + hourLabel + '</span>' +
+                            '<i class="fa-solid ' + hInfo.icon + '" aria-hidden="true"></i>' +
+                            '<span class="h-temp">' + hTemp + '°</span>' +
+                            '</div>';
+                    }).join('');
+                }
+
+                widget.classList.remove('weather-loading');
+            } catch (err) {
+                console.error('Weather widget error:', err);
+                widget.classList.remove('weather-loading');
+                setIcon(document.getElementById('weatherPillIcon'), 'fa-triangle-exclamation');
+                setIcon(document.getElementById('weatherIconBig'), 'fa-triangle-exclamation');
+                const descEl = document.getElementById('weatherDesc');
+                if (descEl) descEl.textContent = 'Cuaca tidak tersedia';
+                const hourlyContainer = document.getElementById('weatherHourly');
+                if (hourlyContainer) hourlyContainer.innerHTML = '<div class="weather-hourly-loading">Gagal memuat data.</div>';
+            }
+        }
+
+        function openPanel() {
+            widget.classList.add('open');
+            panel.hidden = false;
+            toggleBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closePanel() {
+            widget.classList.remove('open');
+            panel.hidden = true;
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        toggleBtn.addEventListener('click', openPanel);
+        if (closeBtn) closeBtn.addEventListener('click', closePanel);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && widget.classList.contains('open')) closePanel();
+        });
+        document.addEventListener('click', (e) => {
+            if (widget.classList.contains('open') && !widget.contains(e.target)) closePanel();
+        });
+
+        loadWeather();
+        // Refresh otomatis tiap 30 menit
+        setInterval(loadWeather, 30 * 60 * 1000);
+    })();
 
     // LOADING SCREEN HILANG
     document.addEventListener("DOMContentLoaded", function() {
