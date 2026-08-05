@@ -399,3 +399,39 @@ img { pointer-events: none; user-select: none; -webkit-user-drag: none; -khtml-u
     .weather-widget { right: 16px; bottom: 88px; }
     .weather-panel { width: 260px; }
 }
+
+/* ============================================================
+   PRAYER TIMES WIDGET (jadwal sholat)
+   Ditumpuk DI ATAS weather widget (posisi mengikuti pattern
+   yang sama, tapi bottom offset dinaikkan supaya tidak tabrakan).
+   Weather widget: bottom 95px. Prayer widget: bottom 160px
+   (95px + ~55px tinggi pill + ~10px jarak).
+   ============================================================ */
+.prayer-widget {
+    bottom: 160px;
+}
+
+.prayer-widget .weather-pill-icon i,
+.prayer-widget .weather-icon-big i {
+    color: #2E7D32; /* hijau islami, beda dari kuning tema utama supaya gampang dibedakan sekilas */
+}
+
+.prayer-list .weather-hourly-item.active-prayer {
+    background: rgba(46, 125, 50, 0.15);
+    box-shadow: inset 0 0 0 1px rgba(46, 125, 50, 0.4);
+}
+.dark .prayer-list .weather-hourly-item.active-prayer {
+    background: rgba(46, 125, 50, 0.22);
+}
+.prayer-list .weather-hourly-item.active-prayer i,
+.prayer-list .weather-hourly-item.active-prayer .h-temp {
+    color: #2E7D32;
+}
+.dark .prayer-list .weather-hourly-item.active-prayer i,
+.dark .prayer-list .weather-hourly-item.active-prayer .h-temp {
+    color: #4CAF50;
+}
+
+@media (max-width: 480px) {
+    .prayer-widget { bottom: 150px; }
+}

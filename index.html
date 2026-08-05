@@ -246,6 +246,45 @@
   </div>
 </div>
 
+<!-- PRAYER TIMES WIDGET -->
+<div id="prayerWidget" class="weather-widget prayer-widget weather-loading">
+  <button id="prayerToggle" class="weather-pill" aria-expanded="false" aria-controls="prayerPanel" aria-label="Lihat jadwal sholat">
+    <span id="prayerPillIcon" class="weather-pill-icon"><i class="fa-solid fa-mosque" aria-hidden="true"></i></span>
+    <span id="prayerPillLabel" class="weather-pill-temp">--:--</span>
+    <span class="weather-pill-chevron"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></span>
+  </button>
+
+  <div id="prayerPanel" class="weather-panel" hidden>
+    <div class="weather-panel-header">
+      <div>
+        <p class="weather-panel-label">Jadwal Sholat</p>
+        <p id="prayerDate" class="weather-panel-date">-</p>
+      </div>
+      <button id="prayerClose" class="weather-panel-close" aria-label="Tutup panel sholat"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+
+    <div class="weather-panel-main">
+      <div>
+        <p id="prayerNextName" class="weather-temp-big" style="font-size:1.5rem;">Memuat...</p>
+        <p id="prayerCountdown" class="weather-desc">--:--:--</p>
+        <p id="prayerLocation" class="weather-location"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span>Mencari lokasi...</span></p>
+      </div>
+      <div id="prayerIconBig" class="weather-icon-big"><i class="fa-solid fa-mosque" aria-hidden="true"></i></div>
+    </div>
+
+    <p class="weather-hourly-label">Jadwal Hari Ini</p>
+    <div id="prayerList" class="prayer-list weather-hourly">
+      <div class="weather-hourly-item"><span class="h-time">Subuh</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">--:--</span></div>
+      <div class="weather-hourly-item"><span class="h-time">Dzuhur</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">--:--</span></div>
+      <div class="weather-hourly-item"><span class="h-time">Ashar</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">--:--</span></div>
+      <div class="weather-hourly-item"><span class="h-time">Maghrib</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">--:--</span></div>
+      <div class="weather-hourly-item"><span class="h-time">Isya</span><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span class="h-temp">--:--</span></div>
+    </div>
+
+    <p class="weather-attribution">Data oleh <a href="https://aladhan.com/prayer-times-api" target="_blank" rel="noopener noreferrer">Aladhan API</a></p>
+  </div>
+</div>
+
 <!-- NAVIGATION BAR -->
 <div id="navbar" class="fixed top-0 left-0 w-full z-50">
   <div class="mx-auto hidden lg:flex max-w-6xl items-center justify-between rounded-full nav-inner mt-4">
@@ -1655,6 +1694,196 @@
         loadWeather();
         // Refresh otomatis tiap 30 menit
         setInterval(loadWeather, 30 * 60 * 1000);
+    })();
+
+    // ============================================
+    // PRAYER TIMES WIDGET (Aladhan API — gratis, tanpa API key)
+    // ============================================
+    (function() {
+        const widget = document.getElementById('prayerWidget');
+        const toggleBtn = document.getElementById('prayerToggle');
+        const closeBtn = document.getElementById('prayerClose');
+        const panel = document.getElementById('prayerPanel');
+        if (!widget || !toggleBtn || !panel) return;
+
+        // Fallback: Bogor, Jawa Barat (lokasi Muhammad)
+        const FALLBACK_COORDS = { lat: -6.595038, lon: 106.816635, label: 'Bogor, Indonesia' };
+
+        // Urutan & label sholat yang ditampilkan (Imsak & Sunrise sengaja tidak ditampilkan di list utama)
+        const PRAYER_KEYS = [
+            { key: 'Fajr', label: 'Subuh' },
+            { key: 'Dhuhr', label: 'Dzuhur' },
+            { key: 'Asr', label: 'Ashar' },
+            { key: 'Maghrib', label: 'Maghrib' },
+            { key: 'Isha', label: 'Isya' }
+        ];
+
+        let countdownInterval = null;
+
+        function formatDate() {
+            const d = new Date();
+            return d.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        async function getLocation() {
+            if (!navigator.geolocation) return FALLBACK_COORDS;
+            try {
+                const pos = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000, maximumAge: 600000 });
+                });
+                return { lat: pos.coords.latitude, lon: pos.coords.longitude, label: null };
+            } catch (e) {
+                return FALLBACK_COORDS;
+            }
+        }
+
+        async function getLocationName(lat, lon, fallbackLabel) {
+            if (fallbackLabel) return fallbackLabel;
+            try {
+                const res = await fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + lat + '&longitude=' + lon + '&localityLanguage=id');
+                if (!res.ok) throw new Error('reverse geocode failed');
+                const data = await res.json();
+                return data.city || data.locality || data.principalSubdivision || 'Lokasi Anda';
+            } catch (e) {
+                return 'Lokasi Anda';
+            }
+        }
+
+        // Parse "HH:mm" (kadang Aladhan mengembalikan "HH:mm (WIB)") jadi objek Date hari ini
+        function timeStringToDate(timeStr) {
+            const clean = timeStr.split(' ')[0]; // buang zona waktu kalau ada
+            const [h, m] = clean.split(':').map(Number);
+            const d = new Date();
+            d.setHours(h, m, 0, 0);
+            return d;
+        }
+
+        function updateCountdown(timings) {
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            function tick() {
+                const now = new Date();
+                let next = null;
+                let nextLabel = null;
+
+                for (const p of PRAYER_KEYS) {
+                    const t = timeStringToDate(timings[p.key]);
+                    if (t > now) {
+                        next = t;
+                        nextLabel = p.label;
+                        break;
+                    }
+                }
+
+                // Kalau semua jadwal hari ini sudah lewat, hitung ke Subuh besok
+                if (!next) {
+                    next = timeStringToDate(timings['Fajr']);
+                    next.setDate(next.getDate() + 1);
+                    nextLabel = 'Subuh';
+                }
+
+                const diff = next - now;
+                const hh = Math.floor(diff / 3600000);
+                const mm = Math.floor((diff % 3600000) / 60000);
+                const ss = Math.floor((diff % 60000) / 1000);
+                const pad = n => n.toString().padStart(2, '0');
+
+                const nameEl = document.getElementById('prayerNextName');
+                const countdownEl = document.getElementById('prayerCountdown');
+                const pillLabel = document.getElementById('prayerPillLabel');
+
+                if (nameEl) nameEl.textContent = nextLabel;
+                if (countdownEl) countdownEl.textContent = pad(hh) + ':' + pad(mm) + ':' + pad(ss);
+                if (pillLabel) pillLabel.textContent = pad(hh) + ':' + pad(mm);
+
+                // Highlight sholat aktif di list
+                document.querySelectorAll('#prayerList .weather-hourly-item').forEach(el => el.classList.remove('active-prayer'));
+                const activeEl = document.querySelector('#prayerList [data-prayer="' + nextLabel + '"]');
+                if (activeEl) activeEl.classList.add('active-prayer');
+            }
+
+            tick();
+            countdownInterval = setInterval(tick, 1000);
+        }
+
+        function renderList(timings) {
+            const listEl = document.getElementById('prayerList');
+            if (!listEl) return;
+            listEl.innerHTML = PRAYER_KEYS.map(p => {
+                const t = timings[p.key].split(' ')[0];
+                return '<div class="weather-hourly-item" data-prayer="' + p.label + '">' +
+                    '<span class="h-time">' + p.label + '</span>' +
+                    '<i class="fa-solid fa-mosque" aria-hidden="true"></i>' +
+                    '<span class="h-temp">' + t + '</span>' +
+                    '</div>';
+            }).join('');
+        }
+
+        async function loadPrayerTimes() {
+            const dateEl = document.getElementById('prayerDate');
+            if (dateEl) dateEl.textContent = formatDate();
+
+            const pillIcon = document.getElementById('prayerPillIcon');
+            const bigIcon = document.getElementById('prayerIconBig');
+            if (pillIcon) pillIcon.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+            if (bigIcon) bigIcon.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+
+            const coords = await getLocation();
+            const locationName = await getLocationName(coords.lat, coords.lon, coords.label);
+            const locEl = document.querySelector('#prayerLocation span');
+            if (locEl) locEl.textContent = locationName;
+
+            // method=20 -> Kemenag RI (Indonesia). Ganti kalau perlu metode negara lain.
+            const url = 'https://api.aladhan.com/v1/timings?latitude=' + coords.lat + '&longitude=' + coords.lon + '&method=20';
+
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Gagal mengambil jadwal sholat');
+                const data = await res.json();
+                const timings = data.data.timings;
+
+                renderList(timings);
+                updateCountdown(timings);
+
+                if (pillIcon) pillIcon.innerHTML = '<i class="fa-solid fa-mosque" aria-hidden="true"></i>';
+                if (bigIcon) bigIcon.innerHTML = '<i class="fa-solid fa-mosque" aria-hidden="true"></i>';
+
+                widget.classList.remove('weather-loading');
+            } catch (err) {
+                console.error('Prayer widget error:', err);
+                widget.classList.remove('weather-loading');
+                if (pillIcon) pillIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>';
+                if (bigIcon) bigIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>';
+                const nameEl = document.getElementById('prayerNextName');
+                if (nameEl) nameEl.textContent = 'Gagal memuat';
+                const listEl = document.getElementById('prayerList');
+                if (listEl) listEl.innerHTML = '<div class="weather-hourly-loading">Gagal memuat data.</div>';
+            }
+        }
+
+        function openPanel() {
+            widget.classList.add('open');
+            panel.hidden = false;
+            toggleBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closePanel() {
+            widget.classList.remove('open');
+            panel.hidden = true;
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        toggleBtn.addEventListener('click', openPanel);
+        if (closeBtn) closeBtn.addEventListener('click', closePanel);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && widget.classList.contains('open')) closePanel();
+        });
+        document.addEventListener('click', (e) => {
+            if (widget.classList.contains('open') && !widget.contains(e.target)) closePanel();
+        });
+
+        loadPrayerTimes();
+        // Refresh jadwal tiap 1 jam (data harian, cukup ringan)
+        setInterval(loadPrayerTimes, 60 * 60 * 1000);
     })();
 
     // LOADING SCREEN HILANG
