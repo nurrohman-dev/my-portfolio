@@ -401,19 +401,55 @@ img { pointer-events: none; user-select: none; -webkit-user-drag: none; -khtml-u
 }
 
 /* ============================================================
-   PRAYER TIMES WIDGET (jadwal sholat)
-   Ditumpuk DI ATAS weather widget (posisi mengikuti pattern
-   yang sama, tapi bottom offset dinaikkan supaya tidak tabrakan).
-   Weather widget: bottom 95px. Prayer widget: bottom 160px
-   (95px + ~55px tinggi pill + ~10px jarak).
+   INFO HUB WIDGET — tab switcher (Cuaca / Sholat) di dalam
+   satu panel weather-widget yang sama. Menggantikan dua widget
+   terpisah supaya tidak berdesakan di layar kecil.
    ============================================================ */
-.prayer-widget {
-    bottom: 160px;
+.info-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    background: rgba(0,0,0,0.04);
+    border-radius: 9999px;
+    margin-bottom: 16px;
 }
+.dark .info-tabs { background: rgba(255,255,255,0.06); }
 
-.prayer-widget .weather-pill-icon i,
-.prayer-widget .weather-icon-big i {
-    color: #2E7D32; /* hijau islami, beda dari kuning tema utama supaya gampang dibedakan sekilas */
+.info-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 8px 0;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.dark .info-tab { color: #9aa1b5; }
+
+.info-tab.active {
+    background: #1a1f36;
+    color: #ffffff;
+}
+.dark .info-tab.active { background: #F5A623; color: #1a1f36; }
+
+.info-tab[data-tab="prayer"].active { background: #2E7D32; color: #ffffff; }
+.dark .info-tab[data-tab="prayer"].active { background: #4CAF50; color: #0f111a; }
+
+/* Ikon & aksen warna hijau khusus saat tab Sholat aktif */
+#prayerTabContent .weather-icon-big,
+#prayerTabContent .weather-location i {
+    color: #2E7D32;
+}
+.dark #prayerTabContent .weather-icon-big,
+.dark #prayerTabContent .weather-location i {
+    color: #4CAF50;
 }
 
 .prayer-list .weather-hourly-item.active-prayer {
@@ -430,8 +466,4 @@ img { pointer-events: none; user-select: none; -webkit-user-drag: none; -khtml-u
 .dark .prayer-list .weather-hourly-item.active-prayer i,
 .dark .prayer-list .weather-hourly-item.active-prayer .h-temp {
     color: #4CAF50;
-}
-
-@media (max-width: 480px) {
-    .prayer-widget { bottom: 150px; }
 }
